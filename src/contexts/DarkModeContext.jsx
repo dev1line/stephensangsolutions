@@ -17,10 +17,7 @@ export const DarkModeProvider = ({ children }) => {
     if (saved !== null) {
       return saved === 'true'
     }
-    // Check system preference
-    if (typeof window !== 'undefined') {
-      return window.matchMedia('(prefers-color-scheme: dark)').matches
-    }
+    // Default to light mode
     return false
   })
 
@@ -36,19 +33,6 @@ export const DarkModeProvider = ({ children }) => {
     }
   }, [isDark])
 
-  // Listen to system preference changes
-  useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
-    const handleChange = (e) => {
-      // Only update if user hasn't manually set preference
-      if (localStorage.getItem('darkMode') === null) {
-        setIsDark(e.matches)
-      }
-    }
-    
-    mediaQuery.addEventListener('change', handleChange)
-    return () => mediaQuery.removeEventListener('change', handleChange)
-  }, [])
 
   const toggleDarkMode = () => {
     setIsDark(prev => !prev)

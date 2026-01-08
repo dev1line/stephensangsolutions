@@ -12,9 +12,9 @@ export const useLanguage = () => {
 
 export const LanguageProvider = ({ children }) => {
   const [language, setLanguage] = useState(() => {
-    // Get from localStorage or default to Vietnamese
+    // Get from localStorage or default to English
     const saved = localStorage.getItem('language')
-    return saved || 'vi'
+    return saved || 'en'
   })
 
   useEffect(() => {

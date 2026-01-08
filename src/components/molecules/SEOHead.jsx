@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { normalizeUrl } from '../../utils/urlUtils'
 
 const SEOHead = ({ 
   title, 
@@ -8,6 +9,10 @@ const SEOHead = ({
   type = 'website'
 }) => {
   useEffect(() => {
+    // Normalize URLs to avoid protocol mismatch
+    const normalizedImage = image ? normalizeUrl(image) : null
+    const normalizedUrl = url ? normalizeUrl(url) : null
+
     // Update document title
     if (title) {
       document.title = title
@@ -36,27 +41,27 @@ const SEOHead = ({
     // Update Open Graph tags
     if (title) updateMetaTag('og:title', title)
     if (description) updateMetaTag('og:description', description)
-    if (image) updateMetaTag('og:image', image)
-    if (url) updateMetaTag('og:url', url)
+    if (normalizedImage) updateMetaTag('og:image', normalizedImage)
+    if (normalizedUrl) updateMetaTag('og:url', normalizedUrl)
     updateMetaTag('og:type', type)
 
     // Update Twitter tags
     if (title) updateMetaTag('twitter:title', title)
     if (description) updateMetaTag('twitter:description', description)
-    if (image) updateMetaTag('twitter:image', image)
+    if (normalizedImage) updateMetaTag('twitter:image', normalizedImage)
 
     // Update standard meta tags
     if (description) updateMetaTag('description', description)
 
     // Update canonical URL
     let canonical = document.querySelector('link[rel="canonical"]')
-    if (url) {
+    if (normalizedUrl) {
       if (!canonical) {
         canonical = document.createElement('link')
         canonical.setAttribute('rel', 'canonical')
         document.head.appendChild(canonical)
       }
-      canonical.setAttribute('href', url)
+      canonical.setAttribute('href', normalizedUrl)
     }
   }, [title, description, image, url, type])
 

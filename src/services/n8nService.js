@@ -1,6 +1,9 @@
-import axios from 'axios'
+import axios from "axios";
+import { normalizeUrl } from "../utils/urlUtils";
 
-const N8N_WEBHOOK_URL = import.meta.env.VITE_N8N_WEBHOOK_URL || ''
+const N8N_WEBHOOK_URL = normalizeUrl(
+  import.meta.env.VITE_N8N_WEBHOOK_URL || ""
+);
 
 class N8nService {
   /**
@@ -9,18 +12,18 @@ class N8nService {
    */
   async getPosts() {
     if (!N8N_WEBHOOK_URL) {
-      console.warn('N8N_WEBHOOK_URL chưa được cấu hình')
-      return []
+      console.warn("N8N_WEBHOOK_URL chưa được cấu hình");
+      return [];
     }
 
     try {
       const response = await axios.get(`${N8N_WEBHOOK_URL}?action=getPosts`, {
         timeout: 10000,
-      })
-      return response.data.posts || response.data || []
+      });
+      return response.data.posts || response.data || [];
     } catch (error) {
-      console.error('Error fetching posts from n8n:', error)
-      throw new Error('Không thể tải bài viết từ n8n')
+      console.error("Error fetching posts from n8n:", error);
+      throw new Error("Không thể tải bài viết từ n8n");
     }
   }
 
@@ -31,13 +34,13 @@ class N8nService {
    */
   async sendContactForm(formData) {
     if (!N8N_WEBHOOK_URL) {
-      console.warn('N8N_WEBHOOK_URL chưa được cấu hình')
+      console.warn("N8N_WEBHOOK_URL chưa được cấu hình");
       // Fallback: chỉ log ra console trong development
       if (import.meta.env.DEV) {
-        console.log('Contact form data:', formData)
-        return Promise.resolve()
+        console.log("Contact form data:", formData);
+        return Promise.resolve();
       }
-      throw new Error('N8N webhook chưa được cấu hình')
+      throw new Error("N8N webhook chưa được cấu hình");
     }
 
     try {
@@ -50,10 +53,10 @@ class N8nService {
         {
           timeout: 10000,
         }
-      )
+      );
     } catch (error) {
-      console.error('Error sending contact form to n8n:', error)
-      throw new Error('Không thể gửi form liên hệ')
+      console.error("Error sending contact form to n8n:", error);
+      throw new Error("Không thể gửi form liên hệ");
     }
   }
 
@@ -65,8 +68,8 @@ class N8nService {
    */
   async triggerBlogPostUpload(postData = null) {
     if (!N8N_WEBHOOK_URL) {
-      console.warn('N8N_WEBHOOK_URL chưa được cấu hình')
-      return
+      console.warn("N8N_WEBHOOK_URL chưa được cấu hình");
+      return;
     }
 
     try {
@@ -79,13 +82,12 @@ class N8nService {
         {
           timeout: 15000,
         }
-      )
+      );
     } catch (error) {
-      console.error('Error triggering blog post upload:', error)
-      throw new Error('Không thể trigger n8n workflow')
+      console.error("Error triggering blog post upload:", error);
+      throw new Error("Không thể trigger n8n workflow");
     }
   }
 }
 
-export const n8nService = new N8nService()
-
+export const n8nService = new N8nService();

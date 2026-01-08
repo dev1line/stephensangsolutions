@@ -3,6 +3,7 @@ import { FaCalendarAlt, FaClock, FaExternalLinkAlt } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
 import { useLanguage } from '../../contexts/LanguageContext'
 import { translations } from '../../locales'
+import { normalizeUrl } from '../../utils/urlUtils'
 import Badge from '../atoms/Badge'
 
 const BlogCard = ({ post, index = 0 }) => {
@@ -37,7 +38,7 @@ const BlogCard = ({ post, index = 0 }) => {
       {post.image && (
         <div className="w-full h-48 overflow-hidden rounded-lg mb-4">
           <img
-            src={post.image}
+            src={normalizeUrl(post.image)}
             alt={post.title}
             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
           />

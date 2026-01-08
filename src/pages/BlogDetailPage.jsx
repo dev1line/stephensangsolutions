@@ -5,6 +5,7 @@ import { FaCalendarAlt, FaClock, FaArrowLeft } from 'react-icons/fa'
 import { useLanguage } from '../contexts/LanguageContext'
 import { translations } from '../locales'
 import { n8nService } from '../services/n8nService'
+import { normalizeUrl } from '../utils/urlUtils'
 import Badge from '../components/atoms/Badge'
 import Button from '../components/atoms/Button'
 import SEOHead from '../components/molecules/SEOHead'
@@ -79,7 +80,7 @@ const BlogDetailPage = () => {
 
   const baseUrl = typeof window !== 'undefined' ? window.location.origin : ''
   const blogUrl = `${baseUrl}/blog-detail/${id}`
-  const ogImage = post.image || `${baseUrl}/og-image.svg`
+  const ogImage = normalizeUrl(post.image || `${baseUrl}/og-image.svg`)
 
   return (
     <article className="section-container min-h-screen max-w-4xl mx-auto">
@@ -106,7 +107,7 @@ const BlogDetailPage = () => {
         {post.image && (
           <div className="w-full h-96 overflow-hidden rounded-xl mb-8">
             <img
-              src={post.image}
+              src={normalizeUrl(post.image)}
               alt={post.title}
               className="w-full h-full object-cover"
             />
@@ -156,7 +157,7 @@ const BlogDetailPage = () => {
         {post.url && (
           <div className="mt-8 pt-8 border-t border-gray-200">
             <a
-              href={post.url}
+              href={normalizeUrl(post.url)}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-primary inline-flex items-center gap-2"
