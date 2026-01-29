@@ -52,26 +52,26 @@ const Contact = () => {
     {
       icon: FaEnvelope,
       label: 'Email',
-      value: 'your.email@example.com',
-      href: 'mailto:your.email@example.com',
+      value: 'nguyentuanquangsang1999@gmail.com',
+      href: 'mailto:nguyentuanquangsang1999@gmail.com',
     },
     {
       icon: FaPhone,
       label: 'Phone',
-      value: '+84 XXX XXX XXX',
-      href: 'tel:+84XXXXXXXXX',
+      value: '0889354995',
+      href: 'tel:+840889354995',
     },
     {
       icon: FaMapMarkerAlt,
       label: 'Location',
-      value: 'Ho Chi Minh City, Vietnam',
+      value: 'Ha Noi, Vietnam',
       href: '#',
     },
   ]
 
   const socialLinks = [
     { icon: FaLinkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
-    { icon: FaGithub, href: 'https://github.com', label: 'GitHub' },
+    { icon: FaGithub, href: 'https://github.com/dev1line', label: 'GitHub' },
   ]
 
   return (

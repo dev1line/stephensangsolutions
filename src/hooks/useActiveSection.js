@@ -5,7 +5,8 @@ export const useActiveSection = () => {
 
   useEffect(() => {
     const sections = document.querySelectorAll('section[id]')
-    
+    if (sections.length === 0) return
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -31,6 +32,6 @@ export const useActiveSection = () => {
     }
   }, [])
 
-  return activeSection
+  return { activeSection, setActiveSection }
 }
 

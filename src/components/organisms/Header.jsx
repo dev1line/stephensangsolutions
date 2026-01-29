@@ -17,7 +17,7 @@ const Header = () => {
   const navigate = useNavigate();
   const { language } = useLanguage();
   const t = translations[language];
-  const activeSection = useActiveSection();
+  const { activeSection, setActiveSection } = useActiveSection();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -41,29 +41,25 @@ const Header = () => {
     e.preventDefault();
 
     if (item.sectionId) {
-      // If we're not on home page, navigate first
+      setActiveSection(item.sectionId);
       if (location.pathname !== "/") {
         navigate("/");
-        // Wait for navigation then scroll
         setTimeout(() => {
           scrollToSection(item.sectionId);
         }, 100);
       } else {
-        // Already on home page, just scroll
         scrollToSection(item.sectionId);
       }
     } else {
-      // Regular page navigation (blog)
       navigate(item.href);
     }
 
-    // Close mobile menu
     setIsMobileMenuOpen(false);
   };
 
   const isActive = (item) => {
     if (item.sectionId) {
-      return activeSection === item.sectionId;
+      return location.pathname === "/" && activeSection === item.sectionId;
     }
     return location.pathname === item.href;
   };

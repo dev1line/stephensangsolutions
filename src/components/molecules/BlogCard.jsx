@@ -44,13 +44,13 @@ const BlogCard = ({ post, index = 0 }) => {
           />
         </div>
       )}
-      <h3 className="text-xl font-bold text-gray-800 mb-3 group-hover:text-primary-600 transition-colors">
+      <h3 className="text-xl font-bold text-gray-800 dark:text-slate-100 mb-3 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
         {post.title}
       </h3>
-      <p className="text-gray-600 mb-4 flex-grow line-clamp-3">
+      <p className="text-gray-600 dark:text-slate-300 mb-4 flex-grow line-clamp-3">
         {post.excerpt || post.description || post.content?.substring(0, 150) + '...'}
       </p>
-      <div className="flex items-center gap-4 text-sm text-gray-500 mb-4">
+      <div className="flex items-center gap-4 text-sm text-gray-500 dark:text-slate-400 mb-4">
         {post.publishedAt && (
           <div className="flex items-center gap-1">
             <FaCalendarAlt />
@@ -71,7 +71,7 @@ const BlogCard = ({ post, index = 0 }) => {
           </Badge>
         ))}
       </div>
-      <div className="flex items-center gap-2 text-primary-600 group-hover:text-primary-700 font-medium">
+      <div className="flex items-center gap-2 text-primary-600 dark:text-primary-400 group-hover:text-primary-700 dark:group-hover:text-primary-300 font-medium">
         {t.blog.readMore}
         <FaExternalLinkAlt className="text-sm group-hover:translate-x-1 transition-transform" />
       </div>

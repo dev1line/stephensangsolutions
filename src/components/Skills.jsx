@@ -9,16 +9,19 @@ import {
   FaJenkins,
   FaPython,
   FaLinux,
+  FaShieldAlt,
 } from 'react-icons/fa'
 import {
   SiTerraform,
-  SiAnsible,
   SiKubernetes,
-  SiPrometheus,
-  SiGrafana,
   SiGitlab,
   SiGithubactions,
-  SiAzuredevops,
+  SiGo,
+  SiNodedotjs,
+  SiReact,
+  SiPostgresql,
+  SiMongodb,
+  SiSolidity,
 } from 'react-icons/si'
 
 const Skills = () => {
@@ -27,48 +30,55 @@ const Skills = () => {
   
   const skillCategories = [
     {
-      title: t.skills.categories.cloudPlatforms,
+      title: t.skills.categories.cloudSecurity,
       skills: [
-        { name: 'AWS', icon: FaAws, level: 90 },
-        { name: 'Azure', icon: SiAzuredevops, level: 85 },
-        { name: 'GCP', icon: FaAws, level: 80 },
+        { name: 'AWS IAM & KMS', icon: FaAws, level: 92 },
+        { name: 'GuardDuty & WAF', icon: FaShieldAlt, level: 88 },
+        { name: 'Secrets Manager', icon: FaShieldAlt, level: 90 },
       ],
     },
     {
-      title: t.skills.categories.containerOrchestration,
+      title: t.skills.categories.infrastructureOrchestration,
       skills: [
-        { name: 'Docker', icon: FaDocker, level: 95 },
-        { name: 'Kubernetes', icon: SiKubernetes, level: 90 },
+        { name: 'Kubernetes / EKS', icon: SiKubernetes, level: 90 },
+        { name: 'Docker', icon: FaDocker, level: 92 },
+        { name: 'Terraform', icon: SiTerraform, level: 90 },
+        { name: 'Helm', icon: SiKubernetes, level: 85 },
       ],
     },
     {
-      title: t.skills.categories.cicdTools,
+      title: t.skills.categories.devsecopsCicd,
       skills: [
-        { name: 'Jenkins', icon: FaJenkins, level: 90 },
-        { name: 'GitLab CI', icon: SiGitlab, level: 85 },
-        { name: 'GitHub Actions', icon: SiGithubactions, level: 88 },
+        { name: 'GitLab CI', icon: SiGitlab, level: 90 },
+        { name: 'Jenkins', icon: FaJenkins, level: 88 },
+        { name: 'SAST / DAST', icon: FaShieldAlt, level: 85 },
+        { name: 'Trivy & Checkov', icon: FaShieldAlt, level: 88 },
       ],
     },
     {
-      title: t.skills.categories.infrastructureAsCode,
+      title: t.skills.categories.blockchainSecurity,
       skills: [
-        { name: 'Terraform', icon: SiTerraform, level: 92 },
-        { name: 'Ansible', icon: SiAnsible, level: 85 },
+        { name: 'Foundry & Slither', icon: SiSolidity, level: 88 },
+        { name: 'EVM / Solidity', icon: SiSolidity, level: 90 },
+        { name: 'Hyperledger & ZKP', icon: FaShieldAlt, level: 82 },
       ],
     },
     {
-      title: t.skills.categories.monitoringObservability,
+      title: t.skills.categories.development,
       skills: [
-        { name: 'Prometheus', icon: SiPrometheus, level: 85 },
-        { name: 'Grafana', icon: SiGrafana, level: 88 },
+        { name: 'Golang', icon: SiGo, level: 88 },
+        { name: 'NestJS / Node.js', icon: SiNodedotjs, level: 85 },
+        { name: 'Python', icon: FaPython, level: 88 },
+        { name: 'React / Next.js', icon: SiReact, level: 82 },
+        { name: 'PostgreSQL / MongoDB', icon: SiPostgresql, level: 85 },
       ],
     },
     {
-      title: t.skills.categories.otherTools,
+      title: t.skills.categories.securityResearch,
       skills: [
-        { name: 'Git', icon: FaGitAlt, level: 95 },
-        { name: 'Linux', icon: FaLinux, level: 90 },
-        { name: 'Python', icon: FaPython, level: 85 },
+        { name: 'TON (FunC, FIFT)', icon: FaShieldAlt, level: 85 },
+        { name: 'Rust / Cosmos', icon: FaShieldAlt, level: 80 },
+        { name: 'Git & Linux', icon: FaGitAlt, level: 92 },
       ],
     },
   ]

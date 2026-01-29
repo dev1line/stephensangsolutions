@@ -15,13 +15,13 @@ const SectionTitle = ({ children, mascotPosition = 'right', variant = 'default',
     >
       {isLeft && (
         <div className="flex-shrink-0 relative">
-          <AnimatedMascotWrapper size={80} variant={variant} />
+          <AnimatedMascotWrapper size={160} variant={variant} />
         </div>
       )}
       <span>{children}</span>
       {isRight && (
         <div className="flex-shrink-0 relative">
-          <AnimatedMascotWrapper size={80} variant={variant} />
+          <AnimatedMascotWrapper size={160} variant={variant} />
         </div>
       )}
     </motion.h2>

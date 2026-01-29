@@ -1,5 +1,6 @@
 import axios from "axios";
 import { normalizeUrl } from "../utils/urlUtils";
+import { mockBlogPosts } from "../data/mockBlogPosts";
 
 const N8N_WEBHOOK_URL = normalizeUrl(
   import.meta.env.VITE_N8N_WEBHOOK_URL || ""
@@ -7,13 +8,13 @@ const N8N_WEBHOOK_URL = normalizeUrl(
 
 class N8nService {
   /**
-   * Lấy danh sách bài viết blog từ n8n webhook
+   * Lấy danh sách bài viết blog từ n8n webhook hoặc mock data
    * @returns {Promise<Array>} Danh sách bài viết
    */
   async getPosts() {
     if (!N8N_WEBHOOK_URL) {
-      console.warn("N8N_WEBHOOK_URL chưa được cấu hình");
-      return [];
+      console.warn("N8N_WEBHOOK_URL chưa được cấu hình, dùng mock blog posts");
+      return Promise.resolve(mockBlogPosts);
     }
 
     try {

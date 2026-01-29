@@ -1,14 +1,35 @@
+/**
+ * S2 SOLUTIONS - BACKGROUND SYSTEM
+ * Styles: Architect, Cloud, Tech, Active Defense + Virus → Shield
+ */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --bg-base: #fffbf5;
+  --primary-orange: #e65100;
+  --accent-orange: #ff9900;
+  --text-dark: #1a1a1a;
+  --text-light: #ffffff;
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
   }
-  
+
   body {
-    @apply bg-gradient-to-br from-orange-50 via-white to-orange-50 dark:from-slate-900 dark:via-indigo-950 dark:to-slate-900 text-gray-900 dark:text-slate-100;
+    overflow-x: hidden;
+    @apply text-gray-900 dark:text-slate-100;
+    background-color: var(--bg-base);
+    background-image: linear-gradient(to bottom right, #fff7ed, #fffbf5, #fff7ed);
+  }
+
+  .dark body {
+    background-color: #0f172a;
+    background-image: linear-gradient(to bottom right, #0f172a, #1e1b4b, #0f172a);
   }
 }
 
@@ -32,5 +53,422 @@
   .btn-secondary {
     @apply bg-white dark:bg-slate-800/90 text-primary-600 dark:text-primary-300 px-6 py-3 rounded-lg font-semibold border-2 border-primary-600 dark:border-primary-400 hover:bg-primary-50 dark:hover:bg-primary-500/20 transition-all duration-300;
   }
+
+  /* Landing: mascot area + shield forcefield */
+  .mascot-area {
+    @apply relative;
+  }
+
+  /* Khiên + hào quang: bán kính 140px; virus nhắm tâm (50vw, var(--shield-cy)) và nổ tại biên khiên */
+  .shield-forcefield {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 280px;
+    height: 280px;
+    margin-left: -140px;
+    margin-top: -140px;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.9;
+    /* Light mode: hào quang xanh đậm/indigo tương phản nền cam trắng */
+    background: radial-gradient(
+      circle at center,
+      transparent 25%,
+      rgba(30, 64, 175, 0.12) 45%,
+      rgba(59, 130, 246, 0.06) 65%,
+      transparent 85%
+    );
+    border: 3px solid rgba(30, 64, 175, 0.5);
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.4),
+      0 0 30px rgba(30, 64, 175, 0.35),
+      0 0 60px rgba(59, 130, 246, 0.2),
+      inset 0 0 40px rgba(59, 130, 246, 0.08);
+    transition: opacity 0.4s ease, box-shadow 0.4s ease;
+  }
+
+  .shield-forcefield::before {
+    content: '';
+    position: absolute;
+    inset: -20px;
+    border-radius: 50%;
+    pointer-events: none;
+    /* Hào quang ngoài (halo) light: viền tối để nổi */
+    box-shadow: 0 0 40px rgba(30, 64, 175, 0.2), 0 0 80px rgba(59, 130, 246, 0.1);
+    opacity: 0.8;
+  }
+
+  .shield-forcefield.active {
+    animation: forcefield-pulse 2.5s ease-in-out infinite;
+    border-width: 4px;
+    border-color: rgba(30, 64, 175, 0.7);
+    box-shadow:
+      0 0 0 2px rgba(255, 255, 255, 0.5),
+      0 0 50px rgba(30, 64, 175, 0.45),
+      0 0 100px rgba(59, 130, 246, 0.25),
+      inset 0 0 60px rgba(59, 130, 246, 0.12);
+  }
+
+  .shield-forcefield.active::before {
+    box-shadow: 0 0 60px rgba(30, 64, 175, 0.3), 0 0 120px rgba(59, 130, 246, 0.15);
+    animation: forcefield-halo 2.5s ease-in-out infinite;
+  }
+
+  /* Dark mode: hào quang xanh sáng/cyan tương phản nền tối */
+  .dark .shield-forcefield {
+    background: radial-gradient(
+      circle at center,
+      transparent 25%,
+      rgba(56, 189, 248, 0.15) 45%,
+      rgba(96, 165, 250, 0.08) 65%,
+      transparent 85%
+    );
+    border-color: rgba(56, 189, 248, 0.6);
+    box-shadow:
+      0 0 0 1px rgba(0, 0, 0, 0.3),
+      0 0 40px rgba(56, 189, 248, 0.4),
+      0 0 80px rgba(96, 165, 250, 0.25),
+      inset 0 0 50px rgba(96, 165, 250, 0.12);
+  }
+
+  .dark .shield-forcefield::before {
+    box-shadow: 0 0 50px rgba(56, 189, 248, 0.3), 0 0 100px rgba(96, 165, 250, 0.15);
+  }
+
+  .dark .shield-forcefield.active {
+    border-color: rgba(56, 189, 248, 0.8);
+    box-shadow:
+      0 0 0 2px rgba(255, 255, 255, 0.1),
+      0 0 60px rgba(56, 189, 248, 0.5),
+      0 0 120px rgba(96, 165, 250, 0.3),
+      inset 0 0 70px rgba(96, 165, 250, 0.15);
+  }
+
+  .dark .shield-forcefield.active::before {
+    box-shadow: 0 0 80px rgba(56, 189, 248, 0.4), 0 0 150px rgba(96, 165, 250, 0.2);
+  }
+
+  @keyframes forcefield-pulse {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 0.9;
+    }
+    50% {
+      transform: scale(1.06);
+      opacity: 0.85;
+    }
+  }
+
+  @keyframes forcefield-halo {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 0.5; }
+  }
 }
 
+/* --- S2 BACKGROUNDS: thêm class vào <body> --- */
+
+/* 1. ARCHITECT GRID (Dot Grid) */
+body.bg-architect {
+  background-color: var(--bg-base);
+  background-image: radial-gradient(#d7ccc8 1.5px, transparent 1.5px);
+  background-size: 32px 32px;
+  position: relative;
+}
+body.bg-architect::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, transparent 20%, var(--bg-base) 90%);
+  pointer-events: none;
+  z-index: -1;
+}
+.dark body.bg-architect {
+  background-color: #0f172a;
+  background-image: radial-gradient(rgba(148, 163, 184, 0.15) 1.5px, transparent 1.5px);
+}
+.dark body.bg-architect::before {
+  background: radial-gradient(circle, transparent 20%, #0f172a 90%);
+}
+
+/* 2. SOFT CLOUD (Gradient Animation) */
+body.bg-cloud {
+  background-color: var(--bg-base);
+  background-image:
+    radial-gradient(at 0% 0%, rgba(255, 224, 178, 0.3) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(255, 204, 128, 0.2) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(255, 224, 178, 0.3) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, rgba(255, 204, 128, 0.2) 0px, transparent 50%);
+  background-size: 100% 100%;
+  animation: bg-pulse 10s infinite alternate;
+}
+@keyframes bg-pulse {
+  0% { background-size: 100% 100%; }
+  100% { background-size: 120% 120%; }
+}
+
+/* 3. SECURE TECH (Circuit Lines) */
+body.bg-tech {
+  background-color: var(--bg-base);
+  background-image:
+    linear-gradient(rgba(230, 81, 0, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(230, 81, 0, 0.03) 1px, transparent 1px);
+  background-size: 100px 100px;
+  position: relative;
+}
+.floating-shape {
+  position: fixed;
+  background: rgba(255, 153, 0, 0.05);
+  border: 1px solid rgba(255, 153, 0, 0.1);
+  z-index: 0;
+  pointer-events: none;
+  animation: float-up 15s infinite linear;
+}
+@keyframes float-up {
+  from { transform: translateY(110vh) rotate(0deg); opacity: 0; }
+  30% { opacity: 1; }
+  to { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+}
+
+/* 4. ACTIVE DEFENSE (Dark + Forcefield) */
+body.bg-defense {
+  background-color: #1a1a2e;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 40px 40px;
+  color: var(--text-light);
+  transition: background 0.5s ease, color 0.5s ease;
+}
+body.bg-defense .shield-forcefield,
+.shield-forcefield.active {
+  opacity: 1;
+}
+.shield-forcefield.shield-active {
+  animation: shield-hit 0.3s ease-out;
+}
+@keyframes shield-hit {
+  0% {
+    border-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 50px rgba(79, 195, 247, 0.9);
+    background: rgba(79, 195, 247, 0.4);
+  }
+  100% {
+    border-color: rgba(79, 195, 247, 0.3);
+    box-shadow: 0 0 20px rgba(79, 195, 247, 0.2);
+    background: radial-gradient(circle, rgba(79, 195, 247, 0.1) 0%, transparent 70%);
+  }
+}
+
+/* --- VIRUS: di chuyển về phía khiên (chỉ trong home section) --- */
+.virus-layer {
+  z-index: 0;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+.virus-layer--hidden {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+.virus-layer--hidden .virus {
+  animation-play-state: paused;
+}
+.virus {
+  position: fixed;
+  width: 16px;
+  height: 16px;
+  background: #e74c3c;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #c0392b;
+  z-index: 1;
+  pointer-events: none;
+  /* Tâm virus (8px, 8px) sẽ trùng tâm khiên khi chạm; hiệu ứng nổ khi chạm */
+  transform-origin: center center;
+}
+.virus::before,
+.virus::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: inherit;
+  border-radius: inherit;
+}
+.virus::before { transform: rotate(45deg); }
+.virus::after { transform: rotate(30deg); }
+
+/* Tâm khiên = (50vw, 40vh). Bán kính khiên = 140px. Virus dừng và nổ tại BIÊN khiên (cách tâm 140px), không tại tâm. */
+
+/* Góc */
+.virus-from-tl { left: 4vw; top: 4vh; animation: virus-tl 4.2s infinite linear; }
+.virus-from-tr { right: 4vw; top: 5vh; animation: virus-tr 3.8s infinite linear; }
+.virus-from-bl { left: 5vw; bottom: 4vh; animation: virus-bl 4.5s infinite linear; }
+.virus-from-br { right: 5vw; bottom: 5vh; animation: virus-br 4s infinite linear; }
+/* Cạnh giữa */
+.virus-from-left { left: -12px; top: 28vh; animation: virus-left 4s infinite linear; }
+.virus-from-right { right: -12px; top: 30vh; animation: virus-right 3.6s infinite linear; }
+.virus-from-top { left: 50%; top: -16px; margin-left: -8px; animation: virus-top 4.3s infinite linear; }
+.virus-from-bottom { left: 50%; bottom: -16px; margin-left: -8px; animation: virus-bottom 3.9s infinite linear; }
+/* Hướng chéo / ngẫu nhiên */
+.virus-from-a1 { left: 18vw; top: 12vh; animation: virus-a1 4.1s infinite linear; }
+.virus-from-a2 { left: 82vw; top: 18vh; animation: virus-a2 3.7s infinite linear; }
+.virus-from-a3 { left: 12vw; top: 75vh; animation: virus-a3 4.4s infinite linear; }
+.virus-from-a4 { left: 88vw; top: 72vh; animation: virus-a4 4.6s infinite linear; }
+.virus-from-a5 { left: 8vw; top: 45vh; animation: virus-a5 3.5s infinite linear; }
+.virus-from-a6 { left: 92vw; top: 38vh; animation: virus-a6 4.2s infinite linear; }
+.virus-from-a7 { left: 35vw; top: -12px; animation: virus-a7 3.8s infinite linear; }
+.virus-from-a8 { left: 68vw; top: 95vh; animation: virus-a8 4.3s infinite linear; }
+
+/* Tâm khiên theo trục Y; bán kính khiên (virus nổ tại biên): desktop 140px, mobile 150px */
+.virus-layer {
+  --shield-cy: 40vh;
+  --shield-r: 140px;
+}
+@media (max-width: 768px) {
+  .virus-layer {
+    --shield-cy: 50vh;
+    --shield-r: 150px;
+  }
+  .virus {
+    width: 12px;
+    height: 12px;
+    box-shadow: 0 0 6px #c0392b;
+  }
+}
+
+/* Tâm khiên (50vw, 40vh), bán kính 140px. Virus dừng tại BIÊN khiên (cách tâm 140px) rồi nổ. */
+@keyframes virus-tl {
+  0% { transform: translate(0, 0); opacity: 1; box-shadow: 0 0 8px #c0392b; }
+  74% { transform: translate(calc(46vw - (var(--shield-r, 140px) - 5px)), calc(var(--shield-cy, 40vh) - 4vh - 64px)); opacity: 1; box-shadow: 0 0 8px #c0392b; }
+  80% { transform: translate(calc(46vw - (var(--shield-r, 140px) - 5px)), calc(var(--shield-cy, 40vh) - 4vh - 64px)) scale(2.5); opacity: 1; box-shadow: 0 0 28px 16px rgba(231, 76, 60, 0.85); }
+  100% { transform: translate(calc(46vw - (var(--shield-r, 140px) - 5px)), calc(var(--shield-cy, 40vh) - 4vh - 64px)) scale(4); opacity: 0; box-shadow: 0 0 50px 28px rgba(231, 76, 60, 0); }
+}
+@keyframes virus-tr {
+  0% { transform: translate(0, 0); opacity: 1; box-shadow: 0 0 8px #c0392b; }
+  74% { transform: translate(calc(-46vw + (var(--shield-r, 140px) - 5px)), calc(var(--shield-cy, 40vh) - 5vh - 64px)); opacity: 1; box-shadow: 0 0 8px #c0392b; }
+  80% { transform: translate(calc(-46vw + (var(--shield-r, 140px) - 5px)), calc(var(--shield-cy, 40vh) - 5vh - 64px)) scale(2.5); opacity: 1; box-shadow: 0 0 28px 16px rgba(231, 76, 60, 0.85); }
+  100% { transform: translate(calc(-46vw + (var(--shield-r, 140px) - 5px)), calc(var(--shield-cy, 40vh) - 5vh - 64px)) scale(4); opacity: 0; box-shadow: 0 0 50px 28px rgba(231, 76, 60, 0); }
+}
+@keyframes virus-bl {
+  0% { transform: translate(0, 0); opacity: 1; box-shadow: 0 0 8px #c0392b; }
+  74% { transform: translate(calc(46vw - (var(--shield-r, 140px) - 2px)), calc(var(--shield-cy, 40vh) - 92vh + 64px)); opacity: 1; box-shadow: 0 0 8px #c0392b; }
+  80% { transform: translate(calc(46vw - (var(--shield-r, 140px) - 2px)), calc(var(--shield-cy, 40vh) - 92vh + 64px)) scale(2.5); opacity: 1; box-shadow: 0 0 28px 16px rgba(231, 76, 60, 0.85); }
+  100% { transform: translate(calc(46vw - (var(--shield-r, 140px) - 2px)), calc(var(--shield-cy, 40vh) - 92vh + 64px)) scale(4); opacity: 0; box-shadow: 0 0 50px 28px rgba(231, 76, 60, 0); }
+}
+@keyframes virus-br {
+  0% { transform: translate(0, 0); opacity: 1; box-shadow: 0 0 8px #c0392b; }
+  74% { transform: translate(calc(-46vw + (var(--shield-r, 140px) - 2px)), calc(var(--shield-cy, 40vh) - 92vh + 64px)); opacity: 1; box-shadow: 0 0 8px #c0392b; }
+  80% { transform: translate(calc(-46vw + (var(--shield-r, 140px) - 2px)), calc(var(--shield-cy, 40vh) - 92vh + 64px)) scale(2.5); opacity: 1; box-shadow: 0 0 28px 16px rgba(231, 76, 60, 0.85); }
+  100% { transform: translate(calc(-46vw + (var(--shield-r, 140px) - 2px)), calc(var(--shield-cy, 40vh) - 92vh + 64px)) scale(4); opacity: 0; box-shadow: 0 0 50px 28px rgba(231, 76, 60, 0); }
+}
+@keyframes virus-left {
+  0% { transform: translate(0, 0); opacity: 1; box-shadow: 0 0 8px #c0392b; }
+  74% { transform: translate(calc(50vw - (var(--shield-r, 140px) - 4px)), calc(var(--shield-cy, 40vh) - 28vh - 8px)); opacity: 1; box-shadow: 0 0 8px #c0392b; }
+  80% { transform: translate(calc(50vw - (var(--shield-r, 140px) - 4px)), calc(var(--shield-cy, 40vh) - 28vh - 8px)) scale(2.5); opacity: 1; box-shadow: 0 0 28px 16px rgba(231, 76, 60, 0.85); }
+  100% { transform: translate(calc(50vw - (var(--shield-r, 140px) - 4px)), calc(var(--shield-cy, 40vh) - 28vh - 8px)) scale(4); opacity: 0; box-shadow: 0 0 50px 28px rgba(231, 76, 60, 0); }
+}
+@keyframes virus-right {
+  0% { transform: translate(0, 0); opacity: 1; box-shadow: 0 0 8px #c0392b; }
+  74% { transform: translate(calc(-50vw + (var(--shield-r, 140px) + 4px)), calc(var(--shield-cy, 40vh) - 30vh - 8px)); opacity: 1; box-shadow: 0 0 8px #c0392b; }
+  80% { transform: translate(calc(-50vw + (var(--shield-r, 140px) + 4px)), calc(var(--shield-cy, 40vh) - 30vh - 8px)) scale(2.5); opacity: 1; box-shadow: 0 0 28px 16px rgba(231, 76, 60, 0.85); }
+  100% { transform: translate(calc(-50vw + (var(--shield-r, 140px) + 4px)), calc(var(--shield-cy, 40vh) - 30vh - 8px)) scale(4); opacity: 0; box-shadow: 0 0 50px 28px rgba(231, 76, 60, 0); }
+}
+@keyframes virus-top {
+  0% { transform: translate(0, 0); opacity: 1; box-shadow: 0 0 8px #c0392b; }
+  74% { transform: translate(0, calc(var(--shield-cy, 40vh) - (var(--shield-r, 140px) - 8px))); opacity: 1; box-shadow: 0 0 8px #c0392b; }
+  80% { transform: translate(0, calc(var(--shield-cy, 40vh) - (var(--shield-r, 140px) - 8px))) scale(2.5); opacity: 1; box-shadow: 0 0 28px 16px rgba(231, 76, 60, 0.85); }
+  100% { transform: translate(0, calc(var(--shield-cy, 40vh) - (var(--shield-r, 140px) - 8px))) scale(4); opacity: 0; box-shadow: 0 0 50px 28px rgba(231, 76, 60, 0); }
+}
+@keyframes virus-bottom {
+  0% { transform: translate(0, 0); opacity: 1; box-shadow: 0 0 8px #c0392b; }
+  74% { transform: translate(0, calc(var(--shield-cy, 40vh) - 100vh + (var(--shield-r, 140px) - 8px))); opacity: 1; box-shadow: 0 0 8px #c0392b; }
+  80% { transform: translate(0, calc(var(--shield-cy, 40vh) - 100vh + (var(--shield-r, 140px) - 8px))) scale(2.5); opacity: 1; box-shadow: 0 0 28px 16px rgba(231, 76, 60, 0.85); }
+  100% { transform: translate(0, calc(var(--shield-cy, 40vh) - 100vh + (var(--shield-r, 140px) - 8px))) scale(4); opacity: 0; box-shadow: 0 0 50px 28px rgba(231, 76, 60, 0); }
+}
+@keyframes virus-a1 {
+  0% { transform: translate(0, 0); opacity: 1; box-shadow: 0 0 8px #c0392b; }
+  74% { transform: translate(calc(25vw - 73px), calc(var(--shield-cy, 40vh) - 12vh - 62px)); opacity: 1; box-shadow: 0 0 8px #c0392b; }
+  80% { transform: translate(calc(25vw - 73px), calc(var(--shield-cy, 40vh) - 12vh - 62px)) scale(2.5); opacity: 1; box-shadow: 0 0 28px 16px rgba(231, 76, 60, 0.85); }
+  100% { transform: translate(calc(25vw - 73px), calc(var(--shield-cy, 40vh) - 12vh - 62px)) scale(4); opacity: 0; box-shadow: 0 0 50px 28px rgba(231, 76, 60, 0); }
+}
+@keyframes virus-a2 {
+  0% { transform: translate(0, 0); opacity: 1; box-shadow: 0 0 8px #c0392b; }
+  74% { transform: translate(calc(-25vw + 111px), calc(var(--shield-cy, 40vh) - 18vh - 62px)); opacity: 1; box-shadow: 0 0 8px #c0392b; }
+  80% { transform: translate(calc(-25vw + 111px), calc(var(--shield-cy, 40vh) - 18vh - 62px)) scale(2.5); opacity: 1; box-shadow: 0 0 28px 16px rgba(231, 76, 60, 0.85); }
+  100% { transform: translate(calc(-25vw + 111px), calc(var(--shield-cy, 40vh) - 18vh - 62px)) scale(4); opacity: 0; box-shadow: 0 0 50px 28px rgba(231, 76, 60, 0); }
+}
+@keyframes virus-a3 {
+  0% { transform: translate(0, 0); opacity: 1; box-shadow: 0 0 8px #c0392b; }
+  74% { transform: translate(calc(38vw - 117px), calc(var(--shield-cy, 40vh) - 75vh + 64px)); opacity: 1; box-shadow: 0 0 8px #c0392b; }
+  80% { transform: translate(calc(38vw - 117px), calc(var(--shield-cy, 40vh) - 75vh + 64px)) scale(2.5); opacity: 1; box-shadow: 0 0 28px 16px rgba(231, 76, 60, 0.85); }
+  100% { transform: translate(calc(38vw - 117px), calc(var(--shield-cy, 40vh) - 75vh + 64px)) scale(4); opacity: 0; box-shadow: 0 0 50px 28px rgba(231, 76, 60, 0); }
+}
+@keyframes virus-a4 {
+  0% { transform: translate(0, 0); opacity: 1; box-shadow: 0 0 8px #c0392b; }
+  74% { transform: translate(calc(-38vw + 101px), calc(var(--shield-cy, 40vh) - 72vh + 64px)); opacity: 1; box-shadow: 0 0 8px #c0392b; }
+  80% { transform: translate(calc(-38vw + 101px), calc(var(--shield-cy, 40vh) - 72vh + 64px)) scale(2.5); opacity: 1; box-shadow: 0 0 28px 16px rgba(231, 76, 60, 0.85); }
+  100% { transform: translate(calc(-38vw + 101px), calc(var(--shield-cy, 40vh) - 72vh + 64px)) scale(4); opacity: 0; box-shadow: 0 0 50px 28px rgba(231, 76, 60, 0); }
+}
+@keyframes virus-a5 {
+  0% { transform: translate(0, 0); opacity: 1; box-shadow: 0 0 8px #c0392b; }
+  74% { transform: translate(calc(42vw - 138px), calc(var(--shield-cy, 40vh) - 19vh - 49px)); opacity: 1; box-shadow: 0 0 8px #c0392b; }
+  80% { transform: translate(calc(42vw - 138px), calc(var(--shield-cy, 40vh) - 19vh - 49px)) scale(2.5); opacity: 1; box-shadow: 0 0 28px 16px rgba(231, 76, 60, 0.85); }
+  100% { transform: translate(calc(42vw - 138px), calc(var(--shield-cy, 40vh) - 19vh - 49px)) scale(4); opacity: 0; box-shadow: 0 0 50px 28px rgba(231, 76, 60, 0); }
+}
+@keyframes virus-a6 {
+  0% { transform: translate(0, 0); opacity: 1; box-shadow: 0 0 8px #c0392b; }
+  74% { transform: translate(calc(-42vw + 122px), calc(var(--shield-cy, 40vh) - 26vh - 49px)); opacity: 1; box-shadow: 0 0 8px #c0392b; }
+  80% { transform: translate(calc(-42vw + 122px), calc(var(--shield-cy, 40vh) - 26vh - 49px)) scale(2.5); opacity: 1; box-shadow: 0 0 28px 16px rgba(231, 76, 60, 0.85); }
+  100% { transform: translate(calc(-42vw + 122px), calc(var(--shield-cy, 40vh) - 26vh - 49px)) scale(4); opacity: 0; box-shadow: 0 0 50px 28px rgba(231, 76, 60, 0); }
+}
+@keyframes virus-a7 {
+  0% { transform: translate(0, 0); opacity: 1; box-shadow: 0 0 8px #c0392b; }
+  74% { transform: translate(calc(15vw - 73px), calc(var(--shield-cy, 40vh) - (var(--shield-r, 140px) - 4px))); opacity: 1; box-shadow: 0 0 8px #c0392b; }
+  80% { transform: translate(calc(15vw - 73px), calc(var(--shield-cy, 40vh) - (var(--shield-r, 140px) - 4px))) scale(2.5); opacity: 1; box-shadow: 0 0 28px 16px rgba(231, 76, 60, 0.85); }
+  100% { transform: translate(calc(15vw - 73px), calc(var(--shield-cy, 40vh) - (var(--shield-r, 140px) - 4px))) scale(4); opacity: 0; box-shadow: 0 0 50px 28px rgba(231, 76, 60, 0); }
+}
+@keyframes virus-a8 {
+  0% { transform: translate(0, 0); opacity: 1; box-shadow: 0 0 8px #c0392b; }
+  74% { transform: translate(calc(-18vw + 31px), calc(var(--shield-cy, 40vh) - 95vh + 122px)); opacity: 1; box-shadow: 0 0 8px #c0392b; }
+  80% { transform: translate(calc(-18vw + 31px), calc(var(--shield-cy, 40vh) - 95vh + 122px)) scale(2.5); opacity: 1; box-shadow: 0 0 28px 16px rgba(231, 76, 60, 0.85); }
+  100% { transform: translate(calc(-18vw + 31px), calc(var(--shield-cy, 40vh) - 95vh + 122px)) scale(4); opacity: 0; box-shadow: 0 0 50px 28px rgba(231, 76, 60, 0); }
+}
+
+/* Blog detail: code block, images, text */
+.blog-detail-content pre {
+  @apply rounded-t-lg bg-gray-800 dark:bg-slate-900 text-gray-100 p-4 overflow-x-auto text-sm;
+}
+.blog-detail-content pre code {
+  @apply bg-transparent p-0;
+}
+.blog-code-wrapper {
+  @apply mt-6 mb-6;
+}
+.blog-detail-content img {
+  @apply mx-auto block rounded-xl object-cover my-6;
+  max-width: min(100%, 42rem);
+  height: 16rem;
+}
+.blog-detail-content h2 {
+  @apply mt-10 mb-4 text-2xl font-bold text-gray-900 dark:text-slate-100 scroll-mt-24;
+}
+.blog-detail-content h3 {
+  @apply mt-8 mb-3 text-xl font-semibold text-gray-800 dark:text-slate-200 scroll-mt-24;
+}
+.blog-detail-content p {
+  @apply my-4;
+}
+.blog-detail-content ul,
+.blog-detail-content ol {
+  @apply my-4 pl-6;
+}
+.blog-detail-content li {
+  @apply my-1;
+}
+.blog-detail-content code:not(pre code) {
+  @apply px-1.5 py-0.5 rounded bg-gray-200 dark:bg-slate-700 text-sm font-mono;
+}

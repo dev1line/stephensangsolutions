@@ -1,0 +1,75 @@
+<svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" id="mascot-svg">
+                <defs>
+                    <!-- Gradients -->
+                    <linearGradient id="bodyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" style="stop-color:#FFBE76;stop-opacity:1"></stop>
+                        <stop offset="100%" style="stop-color:#F0932B;stop-opacity:1"></stop>
+                    </linearGradient>
+                    <linearGradient id="shieldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#3498DB;stop-opacity:1"></stop>
+                        <stop offset="100%" style="stop-color:#2980B9;stop-opacity:1"></stop>
+                    </linearGradient>
+                    <filter id="glow">
+                        <feGaussianBlur stdDeviation="2.5" result="coloredBlur"></feGaussianBlur>
+                        <feMerge>
+                            <feMergeNode in="coloredBlur"></feMergeNode>
+                            <feMergeNode in="SourceGraphic"></feMergeNode>
+                        </feMerge>
+                    </filter>
+                </defs>
+
+                <!-- Back Leg (Left) -->
+                <path d="M180 380 C180 380, 170 420, 160 425 C150 430, 140 420, 145 400 L160 360" fill="#E67E22" stroke="#D35400" stroke-width="3"></path>
+
+                <!-- Body (Cloud Shape) -->
+                <path d="
+                    M 150 350
+                    C 100 350, 80 300, 100 270
+                    C 80 250, 90 200, 130 190
+                    C 140 150, 200 130, 240 160
+                    C 270 140, 320 150, 340 190
+                    C 380 200, 390 250, 360 280
+                    C 380 320, 340 360, 300 350
+                    C 280 380, 200 380, 150 350
+                    Z" fill="url(#bodyGradient)" stroke="#E67E22" stroke-width="4" stroke-linejoin="round"></path>
+
+                <!-- Face -->
+                <g id="face">
+                    <!-- Left Eye -->
+                    <circle cx="200" cy="260" r="12" fill="#2C3E50"></circle>
+                    <!-- Right Eye -->
+                    <circle cx="270" cy="260" r="12" fill="#2C3E50"></circle>
+                    <!-- Cheeks -->
+                    <circle cx="180" cy="280" r="10" fill="#FF7979" opacity="0.6"></circle>
+                    <circle cx="290" cy="280" r="10" fill="#FF7979" opacity="0.6"></circle>
+                    <!-- Mouth -->
+                    <path d="M 225 280 Q 235 295 245 280" fill="none" stroke="#2C3E50" stroke-width="3" stroke-linecap="round"></path>
+                </g>
+                
+                <!-- Front Leg (Right) -->
+                <path d="M290 370 C290 370, 300 410, 310 415 C320 420, 330 410, 325 390 L310 350" fill="#F0932B" stroke="#E67E22" stroke-width="3"></path>
+
+                <!-- Arm (Holding Shield) -->
+                <path d="M340 280 Q 380 280 390 310" fill="none" stroke="#F0932B" stroke-width="25" stroke-linecap="round"></path>
+
+                <!-- Shield -->
+                <g id="shield" transform="translate(340, 220) scale(0.9)">
+                    <!-- Shield Body -->
+                    <path d="M 10 10 L 110 10 L 110 50 C 110 100, 60 140, 60 140 C 60 140, 10 100, 10 50 Z" fill="url(#shieldGradient)" stroke="#2980B9" stroke-width="4"></path>
+                    <!-- Shield Rim Highlight -->
+                    <path d="M 15 15 L 105 15 L 105 50 C 105 95, 60 130, 60 130 C 60 130, 15 95, 15 50 Z" fill="none" stroke="#5DADE2" stroke-width="3" opacity="0.5"></path>
+                    <!-- 'S' Logo -->
+                    <path d="M 75 45 C 75 45, 85 45, 85 35 C 85 25, 75 25, 60 25 C 45 25, 35 35, 35 50 C 35 65, 50 70, 65 75 C 80 80, 85 90, 85 100 C 85 115, 75 125, 60 125 C 45 125, 35 115, 35 105" fill="none" stroke="white" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <!-- Shield Shine -->
+                    <path d="M 20 20 L 50 20 L 30 60 Z" fill="white" opacity="0.3"></path>
+                </g>
+
+                <!-- Arm (Left/Waving) -->
+                <path d="M120 250 Q 80 220 70 190" fill="none" stroke="#F0932B" stroke-width="25" stroke-linecap="round"></path>
+                
+                <!-- Sparkles (Security Magic) -->
+                <circle cx="80" cy="160" r="5" fill="#3498DB" filter="url(#glow)"></circle>
+                <circle cx="420" cy="180" r="8" fill="#3498DB" filter="url(#glow)"></circle>
+                <circle cx="380" cy="120" r="4" fill="#3498DB" filter="url(#glow)"></circle>
+
+            </svg>

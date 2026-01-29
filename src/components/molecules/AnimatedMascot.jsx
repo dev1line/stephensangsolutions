@@ -75,7 +75,7 @@ const AnimatedMascot = () => {
               left: `${mascot.left}px`,
               transform: "translateY(-50%)",
             }}>
-            <MascotIcon size={100} />
+            <MascotIcon size={200} variant={mascot.id} />
           </div>,
           mascot.sectionElement
         );
