@@ -18,20 +18,23 @@ const MASCOT_FILES = {
 /** Các mascot có bản hoạt ảnh (_anim.svg) – dùng thay cho _v3.svg */
 const MASCOT_ANIM_FILES = {
   runner: 'runner_anim.svg',
+  leader: 'leader_anim.svg',
   coder: 'coder_anim.svg',
   defender: 'defender_anim.svg',
   guardian: 'guardian_anim.svg',
   monitor: 'monitor_anim.svg',
   responder: 'responder_anim.svg',
+  reporter: 'reporter_anim.svg',
 }
 
 const VARIANT_TO_MASCOT = {
   hero: 'runner',
   about: 'leader',
   skills: 'coder',
-  experience: 'analyst',
+  experience: 'responder',
   projects: 'defender',
   contact: 'guardian',
+  certifications: 'reporter',
   default: 'runner',
 }
 

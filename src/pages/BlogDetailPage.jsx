@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { FaCalendarAlt, FaClock, FaArrowLeft } from "react-icons/fa";
+import { FaCalendarAlt, FaClock } from "react-icons/fa";
 import { useLanguage } from "../contexts/LanguageContext";
 import { translations } from "../locales";
 import { n8nService } from "../services/n8nService";
@@ -24,15 +24,19 @@ const BlogDetailPage = () => {
   const { language } = useLanguage();
   const t = translations[language];
   const [post, setPost] = useState(null);
+  const [relatedPosts, setRelatedPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [toc, setToc] = useState([]);
   const [activeHeadingId, setActiveHeadingId] = useState("");
+  const [tocOverflow, setTocOverflow] = useState({}); // id -> pixels to scroll
+  const [tocHoveredId, setTocHoveredId] = useState(null);
   const contentRef = useRef(null);
+  const tocNavRef = useRef(null);
 
   useEffect(() => {
     fetchBlogPost();
-  }, [id]);
+  }, [id, language]);
 
   // Highlight TOC item for the section currently in view
   useEffect(() => {
@@ -45,14 +49,14 @@ const BlogDetailPage = () => {
         const visible = entries.filter((e) => e.isIntersecting);
         if (visible.length === 0) return;
         const byTop = [...visible].sort(
-          (a, b) => a.boundingClientRect.top - b.boundingClientRect.top
+          (a, b) => a.boundingClientRect.top - b.boundingClientRect.top,
         );
         setActiveHeadingId(byTop[0].target.id);
       },
       {
         rootMargin: "-80px 0px -70% 0px",
         threshold: 0,
-      }
+      },
     );
 
     headings.forEach((h) => observer.observe(h));
@@ -105,15 +109,53 @@ const BlogDetailPage = () => {
     });
   }, [post, t.blog.copy, t.blog.copied]);
 
+  // Measure TOC item overflow (title too long) for scroll-on-hover animation
+  useEffect(() => {
+    if (!toc.length || !tocNavRef.current) return;
+    const measure = () => {
+      const ul = tocNavRef.current;
+      if (!ul) return;
+      const links = ul.querySelectorAll("a[data-toc-id]");
+      const next = {};
+      links.forEach((a) => {
+        const id = a.getAttribute("data-toc-id");
+        const span = a.querySelector(".toc-title-span");
+        if (!id || !span) return;
+        const overflow = span.scrollWidth - a.clientWidth;
+        if (overflow > 0) next[id] = Math.ceil(overflow);
+      });
+      setTocOverflow((prev) =>
+        JSON.stringify(prev) === JSON.stringify(next) ? prev : next,
+      );
+    };
+    const raf = requestAnimationFrame(() => measure());
+    return () => cancelAnimationFrame(raf);
+  }, [toc]);
+
   const fetchBlogPost = async () => {
     setLoading(true);
     setError(null);
     try {
-      const posts = await n8nService.getPosts();
+      const posts = await n8nService.getPosts(language);
       const foundPost = posts.find((p) => (p.id || p._id)?.toString() === id);
 
       if (foundPost) {
         setPost(foundPost);
+        const currentId = (foundPost.id || foundPost._id)?.toString();
+        const currentTags = new Set(
+          Array.isArray(foundPost.tags) ? foundPost.tags : [],
+        );
+        const others = posts
+          .filter((p) => (p.id || p._id)?.toString() !== currentId)
+          .map((p) => {
+            const pTags = Array.isArray(p.tags) ? p.tags : [];
+            const matchCount = pTags.filter((t) => currentTags.has(t)).length;
+            return { post: p, matchCount };
+          })
+          .sort((a, b) => b.matchCount - a.matchCount)
+          .slice(0, 3)
+          .map(({ post: p }) => p);
+        setRelatedPosts(others);
       } else {
         setError(t.blog.notFound);
       }
@@ -162,10 +204,10 @@ const BlogDetailPage = () => {
 
   const baseUrl = typeof window !== "undefined" ? window.location.origin : "";
   const blogUrl = `${baseUrl}/blog-detail/${id}`;
-  const ogImage = normalizeUrl(post.image || `${baseUrl}/og-image.svg`);
+  const ogImage = normalizeUrl(post.image || `${baseUrl}/og-image.png`);
 
   return (
-    <article className="section-container min-h-screen lg:pr-[18rem]">
+    <article className="section-container min-h-screen w-full max-w-full overflow-x-hidden">
       <SEOHead
         title={`${post.title} | S2 Solutions`}
         description={
@@ -178,21 +220,14 @@ const BlogDetailPage = () => {
         url={blogUrl}
         type="article"
       />
-      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-8 lg:gap-12">
+      {/* Desktop: wrapper gom content + chỗ phụ lục, phụ lục fixed đặt sát cạnh phải */}
+      <div className="w-full max-w-full min-w-0 mx-auto lg:max-w-6xl lg:pr-[17rem] flex flex-col lg:flex-row lg:items-start gap-6 md:gap-8 lg:gap-10 xl:gap-12 lg:min-w-0">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="flex-1 min-w-0 max-w-4xl">
-          <Button
-            variant="ghost"
-            onClick={() => navigate("/blog")}
-            className="mb-8">
-            <FaArrowLeft className="inline mr-2" />
-            {t.blog.backToBlog}
-          </Button>
-
+          className="flex-1 min-w-0 max-w-4xl overflow-x-hidden">
           {post.image && (
-            <div className="w-full h-80 lg:h-96 overflow-hidden rounded-xl mb-8 flex justify-center">
+            <div className="w-full h-64 sm:h-72 md:h-80 lg:h-96 overflow-hidden rounded-xl mb-6 md:mb-8 flex justify-center">
               <img
                 src={normalizeUrl(post.image)}
                 alt={post.title}
@@ -202,7 +237,7 @@ const BlogDetailPage = () => {
           )}
 
           <header className="mb-8">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-slate-100 mb-4">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-slate-100 mb-4 md:mb-6">
               {post.title}
             </h1>
 
@@ -234,10 +269,10 @@ const BlogDetailPage = () => {
             )}
           </header>
 
-          <div className="prose prose-lg max-w-none blog-detail-content">
+          <div className="prose prose-lg max-w-none blog-detail-content break-words overflow-x-auto">
             <div
               ref={contentRef}
-              className="text-gray-700 dark:text-slate-300 leading-relaxed"
+              className="text-gray-700 dark:text-slate-300 leading-relaxed min-w-0"
               dangerouslySetInnerHTML={{
                 __html:
                   post.content ||
@@ -259,36 +294,82 @@ const BlogDetailPage = () => {
               </a>
             </div>
           )}
+
+          {relatedPosts.length > 0 && (
+            <section className="mt-16 pt-12 border-t border-gray-200 dark:border-slate-600">
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-slate-100 mb-6">
+                {t.blog.relatedPosts}
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+                {relatedPosts.map((related, index) => (
+                  <button
+                    key={related.id || related._id || index}
+                    type="button"
+                    onClick={() =>
+                      navigate(`/blog-detail/${related.id || related._id}`)
+                    }
+                    className="text-left rounded-xl border-2 border-gray-200 dark:border-slate-600 bg-white dark:bg-slate-800/50 hover:border-primary-500 dark:hover:border-primary-500 transition-colors overflow-hidden group">
+                    {related.image && (
+                      <div className="w-full h-36 overflow-hidden">
+                        <img
+                          src={normalizeUrl(related.image)}
+                          alt={related.title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                      </div>
+                    )}
+                    <div className="p-4">
+                      <h3 className="font-bold text-gray-900 dark:text-slate-100 group-hover:text-primary-600 dark:group-hover:text-primary-400 line-clamp-2">
+                        {related.title}
+                      </h3>
+                      <p className="mt-1 text-sm text-gray-600 dark:text-slate-400 line-clamp-2">
+                        {related.excerpt || related.description || ""}
+                      </p>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </section>
+          )}
         </motion.div>
 
         {toc.length > 0 && (
           <aside
-            className="hidden lg:block fixed w-56 xl:w-64 max-h-[calc(100vh-6rem)] overflow-y-auto z-20"
-            style={{
-              left: "calc(50vw + 17rem + 20px)",
-              top: "calc(6rem + 110px)",
-            }}
+            className="hidden lg:block fixed right-6 top-24 w-56 xl:w-64 max-h-[calc(100vh-6rem)] overflow-y-auto z-20 lg:right-[max(1.5rem,calc(50vw-36rem))]"
             aria-label={t.blog.tableOfContents}>
             <nav className="rounded-xl border-2 border-gray-200 dark:border-slate-500 bg-white/95 dark:bg-slate-800/95 backdrop-blur-sm p-4 shadow-md dark:shadow-none ring-1 ring-gray-200/50 dark:ring-slate-600/50">
               <h2 className="text-sm font-semibold text-gray-900 dark:text-slate-100 mb-3">
                 {t.blog.tableOfContents}
               </h2>
-              <ul className="space-y-1.5 text-sm">
+              <ul ref={tocNavRef} className="space-y-1.5 text-sm">
                 {toc.map(({ level, text, id: headingId }) => {
                   const isActive = activeHeadingId === headingId;
+                  const overflowPx = tocOverflow[headingId] ?? 0;
+                  const isHovered = tocHoveredId === headingId;
+                  const shouldScroll = overflowPx > 0 && isHovered;
                   return (
                     <li
                       key={headingId}
-                      style={{ paddingLeft: level === 3 ? "1rem" : 0 }}
-                      className="truncate">
+                      style={{ paddingLeft: level === 3 ? "1rem" : 0 }}>
                       <a
                         href={`#${headingId}`}
-                        className={`block py-1.5 px-2 -mx-2 rounded-lg transition-colors ${
+                        data-toc-id={headingId}
+                        className={`block py-1.5 px-2 -mx-2 rounded-lg overflow-hidden transition-colors ${
                           isActive
                             ? "bg-primary-100 dark:bg-primary-900/40 text-primary-700 dark:text-primary-300 font-semibold"
                             : "text-gray-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-100 dark:hover:bg-slate-700/50"
-                        }`}>
-                        {text}
+                        }`}
+                        onMouseEnter={() => setTocHoveredId(headingId)}
+                        onMouseLeave={() => setTocHoveredId(null)}>
+                        <span
+                          className="toc-title-span whitespace-nowrap inline-block transition-transform duration-500 ease-out"
+                          style={{
+                            transform: shouldScroll
+                              ? `translateX(-${overflowPx + 25}px)`
+                              : "translateX(0)",
+                          }}>
+                          {text}
+                        </span>
                       </a>
                     </li>
                   );

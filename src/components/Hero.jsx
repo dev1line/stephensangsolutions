@@ -49,9 +49,9 @@ const Hero = () => {
   }, [virusVisible])
 
   const socialLinks = [
-    { icon: FaGithub, href: 'https://github.com/dev1line', label: 'GitHub' },
-    { icon: FaLinkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
-    { icon: FaEnvelope, href: 'mailto:nguyentuanquangsang1999@gmail.com', label: 'Email' },
+    { icon: FaGithub, href: 'https://github.com/dev1line', label: 'GitHub', external: true },
+    { icon: FaLinkedin, href: 'https://www.linkedin.com/in/wuansan', label: 'LinkedIn', external: true },
+    { icon: FaEnvelope, href: '#contact', label: 'Email', external: false },
   ]
 
   return (
@@ -92,7 +92,7 @@ const Hero = () => {
               initial={{ opacity: 0, scale: 0.5, y: -20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
-              className="mascot-area mb-4 relative inline-block"
+              className="mascot-area mb-4 relative inline-block scale-90 sm:scale-95 md:scale-100"
             >
               <div className="shield-forcefield" id="forcefield" aria-hidden="true" />
               <div className="relative z-10">
@@ -100,7 +100,7 @@ const Hero = () => {
               </div>
             </motion.div>
             
-            <h1 className="text-5xl md:text-7xl font-bold text-gray-900 dark:text-slate-100">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 dark:text-slate-100">
               {t.hero.greeting}{' '}
               <span className="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">
                 {t.hero.name}
@@ -112,7 +112,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
-            className="text-xl md:text-2xl text-gray-600 dark:text-slate-200 mb-8"
+            className="text-lg sm:text-xl md:text-2xl text-gray-600 dark:text-slate-200 mb-6 md:mb-8"
           >
             {t.hero.title}
           </motion.p>
@@ -135,7 +135,12 @@ const Hero = () => {
             <Button href="#contact">
               {t.hero.contactMe}
             </Button>
-            <Button variant="secondary" href="/resume.pdf">
+            <Button
+              variant="secondary"
+              href="/Stephen-Sang-CV.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <HiDownload className="inline mr-2" />
               {t.hero.downloadCV}
             </Button>
@@ -147,12 +152,11 @@ const Hero = () => {
             transition={{ delay: 1 }}
             className="flex justify-center gap-6"
           >
-            {socialLinks.map(({ icon, href, label }) => (
+            {socialLinks.map(({ icon, href, label, external }) => (
               <a
                 key={label}
                 href={href}
-                target="_blank"
-                rel="noopener noreferrer"
+                {...(external && { target: '_blank', rel: 'noopener noreferrer' })}
                 className="text-gray-700 dark:text-slate-200 hover:text-primary-600 dark:hover:text-primary-300 transition-colors"
                 aria-label={label}
               >

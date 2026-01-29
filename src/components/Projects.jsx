@@ -27,7 +27,7 @@ const Projects = () => {
         {t.projects.title}
       </SectionTitle>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
         {projects.map((project, index) => (
           <motion.div
             key={index}
@@ -37,7 +37,7 @@ const Projects = () => {
             transition={{ delay: index * 0.1 }}
             className="card flex flex-col"
           >
-            <h3 className="text-xl font-bold text-gray-800 dark:text-slate-100 mb-3">
+            <h3 className="text-lg md:text-xl font-bold text-gray-800 dark:text-slate-100 mb-2 md:mb-3">
               {project.title}
             </h3>
             <p className="text-gray-600 dark:text-slate-200 mb-4 flex-grow">

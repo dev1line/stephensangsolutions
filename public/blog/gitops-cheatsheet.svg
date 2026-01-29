@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="400" viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gitops-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0d9488"/>
+      <stop offset="100%" style="stop-color:#0f766e"/>
+    </linearGradient>
+    <linearGradient id="gitops-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#14b8a6"/>
+      <stop offset="100%" style="stop-color:#0d9488"/>
+    </linearGradient>
+    <filter id="blur-gitops">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="8"/>
+    </filter>
+  </defs>
+  <rect width="800" height="400" fill="url(#gitops-bg)"/>
+  <circle cx="220" cy="200" r="140" fill="white" fill-opacity="0.3" filter="url(#blur-gitops)"/>
+  <g transform="translate(100, 60)">
+    <rect x="0" y="0" width="180" height="220" rx="8" fill="white" fill-opacity="0.95"/>
+    <rect x="16" y="20" width="80" height="10" rx="2" fill="url(#gitops-grad)" opacity="0.9"/>
+    <rect x="16" y="44" width="140" height="6" rx="2" fill="#E5E7EB"/>
+    <rect x="16" y="58" width="120" height="6" rx="2" fill="#E5E7EB"/>
+    <rect x="16" y="72" width="100" height="6" rx="2" fill="#E5E7EB"/>
+    <rect x="16" y="96" width="60" height="10" rx="2" fill="url(#gitops-grad)" opacity="0.7"/>
+    <rect x="16" y="120" width="148" height="6" rx="2" fill="#E5E7EB"/>
+    <rect x="16" y="134" width="130" height="6" rx="2" fill="#E5E7EB"/>
+    <rect x="16" y="158" width="70" height="10" rx="2" fill="url(#gitops-grad)" opacity="0.6"/>
+    <rect x="16" y="182" width="140" height="6" rx="2" fill="#E5E7EB"/>
+    <rect x="16" y="196" width="110" height="6" rx="2" fill="#E5E7EB"/>
+  </g>
+  <!-- ArgoCD Octopus logo -->
+  <g transform="translate(258, 80) scale(2.2)">
+    <path d="M 30 30 C 30 10 70 10 70 30 C 70 45 60 50 50 50 C 40 50 30 45 30 30 Z" fill="#EF7B4D"/>
+    <circle cx="43" cy="30" r="4" fill="white"/>
+    <circle cx="57" cy="30" r="4" fill="white"/>
+    <circle cx="43" cy="30" r="1.5" fill="#333"/>
+    <circle cx="57" cy="30" r="1.5" fill="#333"/>
+    <path d="M 35 45 Q 20 60 25 80" stroke="#EF7B4D" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <path d="M 45 48 Q 45 70 40 85" stroke="#EF7B4D" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <path d="M 55 48 Q 55 70 60 85" stroke="#EF7B4D" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <path d="M 65 45 Q 80 60 75 80" stroke="#EF7B4D" stroke-width="6" fill="none" stroke-linecap="round"/>
+  </g>
+  <text x="400" y="165" font-family="system-ui,Arial,sans-serif" font-size="36" font-weight="bold" fill="white" text-anchor="start">GitOps</text>
+  <text x="400" y="212" font-family="system-ui,Arial,sans-serif" font-size="22" fill="rgba(255,255,255,0.95)" text-anchor="start">ArgoCD Cheatsheet</text>
+  <text x="400" y="252" font-family="system-ui,Arial,sans-serif" font-size="15" fill="rgba(255,255,255,0.85)" text-anchor="start">Sync | Application | App of Apps | Helm</text>
+</svg>

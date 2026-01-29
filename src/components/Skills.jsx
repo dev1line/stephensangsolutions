@@ -95,7 +95,7 @@ const Skills = () => {
         {t.skills.title}
       </SectionTitle>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
         {skillCategories.map((category, categoryIndex) => (
           <motion.div
             key={categoryIndex}
@@ -105,7 +105,7 @@ const Skills = () => {
             transition={{ delay: categoryIndex * 0.1 }}
             className="card"
           >
-            <h3 className="text-xl font-bold text-gray-800 mb-6">
+            <h3 className="text-lg md:text-xl font-bold text-gray-800 dark:text-slate-100 mb-4 md:mb-6">
               {category.title}
             </h3>
             <div className="space-y-4">

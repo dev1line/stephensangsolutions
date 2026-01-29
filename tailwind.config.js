@@ -6,7 +6,27 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    screens: {
+      sm: '640px',
+      md: '768px',
+      lg: '1024px',
+      xl: '1280px',
+      '2xl': '1536px',
+      tablet: '768px',
+      'tablet-lg': '1024px',
+      /** Surface Pro 7 (912px) and up: search/filter bar always one row */
+      surface: '912px',
+    },
     extend: {
+      keyframes: {
+        twinkle: {
+          '0%, 100%': { transform: 'scale(1)', filter: 'brightness(1)' },
+          '50%': { transform: 'scale(1.2)', filter: 'brightness(1.5)' },
+        },
+      },
+      animation: {
+        twinkle: 'twinkle 0.6s ease-in-out infinite',
+      },
       colors: {
         primary: {
           50: '#fff7ed',

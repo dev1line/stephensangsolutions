@@ -70,7 +70,7 @@ const Contact = () => {
   ]
 
   const socialLinks = [
-    { icon: FaLinkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
+    { icon: FaLinkedin, href: 'https://www.linkedin.com/in/wuansan', label: 'LinkedIn' },
     { icon: FaGithub, href: 'https://github.com/dev1line', label: 'GitHub' },
   ]
 
@@ -87,14 +87,14 @@ const Contact = () => {
       </SectionTitle>
 
       <div className="max-w-6xl mx-auto">
-        <div className="grid md:grid-cols-2 gap-12">
+        <div className="grid md:grid-cols-2 gap-8 md:gap-10 lg:gap-12">
           {/* Contact Information */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-2xl font-bold text-gray-800 dark:text-slate-100 mb-6">
+            <h3 className="text-xl md:text-2xl font-bold text-gray-800 dark:text-slate-100 mb-4 md:mb-6">
               {t.contact.infoTitle}
             </h3>
             <p className="text-gray-600 dark:text-slate-200 mb-8">

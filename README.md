@@ -186,6 +186,16 @@ Chỉnh sửa các component trong `src/components/`:
 - `Projects.jsx` - Dự án đã làm
 - `Contact.jsx` - Thông tin liên hệ
 
+### Logo khi share link (OG image)
+
+Để link preview hiển thị logo khi share (Discord, Slack, Facebook, v.v.), cần file **PNG** (nhiều nền tảng không hiển thị SVG):
+
+1. Mở `public/og-image.svg` trong trình duyệt hoặc tool chỉnh ảnh.
+2. Export / xuất ra PNG kích thước **1200×630** px.
+3. Lưu thành `public/og-image.png`.
+
+Hoặc dùng [CloudConvert SVG to PNG](https://cloudconvert.com/svg-to-png) (chọn width 1200, height 630), tải về và đặt tên `og-image.png` vào `public/`.
+
 ### Thay đổi màu sắc
 
 Chỉnh sửa `tailwind.config.js` để thay đổi theme colors.

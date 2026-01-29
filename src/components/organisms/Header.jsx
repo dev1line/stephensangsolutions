@@ -32,6 +32,7 @@ const Header = () => {
     { name: t.nav.about, href: "/#about", sectionId: "about" },
     { name: t.nav.skills, href: "/#skills", sectionId: "skills" },
     { name: t.nav.experience, href: "/#experience", sectionId: "experience" },
+    { name: t.nav.certifications, href: "/#certifications", sectionId: "certifications" },
     { name: t.nav.projects, href: "/#projects", sectionId: "projects" },
     { name: t.nav.blog, href: "/blog", sectionId: null },
     { name: t.nav.contact, href: "/#contact", sectionId: "contact" },
@@ -79,8 +80,8 @@ const Header = () => {
             <Logo size="md" />
           </div>
 
-          {/* Desktop Menu */}
-          <div className="hidden md:block">
+          {/* Desktop menu (xl+: đủ chỗ cho nav ngang) */}
+          <div className="hidden xl:block">
             <div className="ml-10 flex items-center space-x-4">
               {navItems.map((item) => (
                 <a
@@ -102,11 +103,15 @@ const Header = () => {
             </div>
           </div>
 
-          {/* Mobile menu button */}
-          <div className="md:hidden">
+          {/* Tablet (md–xl) & Mobile: hamburger menu */}
+          <div className="xl:hidden flex items-center gap-2">
+            <LanguageSwitcher />
+            <DarkModeToggle />
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="text-gray-700 dark:text-slate-200 hover:text-primary-600 dark:hover:text-primary-300 focus:outline-none">
+              className="text-gray-700 dark:text-slate-200 hover:text-primary-600 dark:hover:text-primary-300 focus:outline-none p-2"
+              aria-expanded={isMobileMenuOpen}
+              aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}>
               {isMobileMenuOpen ? (
                 <FiX className="h-6 w-6" />
               ) : (
@@ -116,13 +121,13 @@ const Header = () => {
           </div>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Mobile & Tablet Menu (md–xl) */}
         {isMobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="md:hidden bg-white dark:bg-slate-900/95 border-t dark:border-slate-700/50">
-            <div className="px-2 pt-2 pb-3 space-y-1">
+            className="xl:hidden bg-white dark:bg-slate-900/95 border-t dark:border-slate-700/50">
+            <div className="px-4 pt-3 pb-4 space-y-1 max-h-[calc(100vh-4rem)] overflow-y-auto">
               {navItems.map((item) => (
                 <a
                   key={item.name}
@@ -136,10 +141,6 @@ const Header = () => {
                   {item.name}
                 </a>
               ))}
-              <div className="px-3 py-2 flex items-center gap-2">
-                <LanguageSwitcher />
-                <DarkModeToggle />
-              </div>
             </div>
           </motion.div>
         )}

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { normalizeUrl } from "../utils/urlUtils";
-import { mockBlogPosts } from "../data/mockBlogPosts";
+import { mockBlogPosts, mockENBlogPost } from "../data/mockBlogPosts";
 
 const N8N_WEBHOOK_URL = normalizeUrl(
   import.meta.env.VITE_N8N_WEBHOOK_URL || ""
@@ -8,19 +8,26 @@ const N8N_WEBHOOK_URL = normalizeUrl(
 
 class N8nService {
   /**
-   * Lấy danh sách bài viết blog từ n8n webhook hoặc mock data
+   * Lấy danh sách bài viết blog từ n8n webhook hoặc mock data (theo ngôn ngữ)
+   * @param {string} [locale='vi'] - 'en' | 'vi' - chỉ áp dụng khi dùng mock data
    * @returns {Promise<Array>} Danh sách bài viết
    */
-  async getPosts() {
+  async getPosts(locale = "vi") {
     if (!N8N_WEBHOOK_URL) {
-      console.warn("N8N_WEBHOOK_URL chưa được cấu hình, dùng mock blog posts");
-      return Promise.resolve(mockBlogPosts);
+      const useEN = locale === "en";
+      const posts = useEN ? mockENBlogPost : mockBlogPosts;
+      console.warn(
+        "N8N_WEBHOOK_URL chưa được cấu hình, dùng mock blog posts",
+        useEN ? "(EN)" : "(VI)"
+      );
+      return Promise.resolve(posts);
     }
 
     try {
-      const response = await axios.get(`${N8N_WEBHOOK_URL}?action=getPosts`, {
-        timeout: 10000,
-      });
+      const response = await axios.get(
+        `${N8N_WEBHOOK_URL}?action=getPosts&locale=${locale || "vi"}`,
+        { timeout: 10000 }
+      );
       return response.data.posts || response.data || [];
     } catch (error) {
       console.error("Error fetching posts from n8n:", error);

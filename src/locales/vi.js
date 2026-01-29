@@ -5,6 +5,7 @@ export const vi = {
     about: 'Giới thiệu',
     skills: 'Kỹ năng',
     experience: 'Kinh nghiệm',
+    certifications: 'Chứng chỉ',
     projects: 'Dự án',
     blog: 'Blog',
     contact: 'Liên hệ',
@@ -102,6 +103,17 @@ export const vi = {
       },
     ],
   },
+
+  // Certifications Section
+  certifications: {
+    title: 'Chứng chỉ',
+    solutionsArchitectAssociate: 'AWS Certified Solutions Architect',
+    securitySpecialty: 'AWS Certified Security',
+    issuer: 'Amazon Web Services (AWS)',
+    validityLabel: 'Thời hạn',
+    validity: '2026 – 2029',
+    viewOnCredly: 'Xem trên Credly',
+  },
   
   // Projects Section
   projects: {
@@ -142,6 +154,10 @@ export const vi = {
     title: 'Blog',
     subtitle: 'Khám phá những bài viết về DevOps, Cloud, và các công nghệ mới nhất',
     searchPlaceholder: 'Tìm theo tiêu đề, mô tả...',
+    filterByType: 'Loại',
+    allTypes: 'Tất cả',
+    cheatsheet: 'Cheatsheet',
+    project: 'Project',
     filterByTool: 'Lọc theo công cụ',
     filterBySkill: 'Lọc theo kỹ năng',
     allTools: 'Tất cả công cụ',
@@ -154,6 +170,7 @@ export const vi = {
     noResultsHint: 'Thử đổi từ khóa tìm kiếm hoặc bỏ bộ lọc.',
     readMore: 'Đọc thêm',
     backToBlog: 'Quay lại Blog',
+    relatedPosts: 'Bài viết liên quan',
     readOriginal: 'Đọc bài viết gốc',
     minutes: 'phút',
     minutesRead: 'phút đọc',
@@ -162,6 +179,9 @@ export const vi = {
     tableOfContents: 'Phụ lục',
     copy: 'Sao chép',
     copied: 'Đã copy!',
+    prevPage: 'Trang trước',
+    nextPage: 'Trang sau',
+    pageOf: 'Trang',
   },
   
   // Contact Section

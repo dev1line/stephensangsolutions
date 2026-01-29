@@ -25,7 +25,7 @@ const Experience = () => {
       <div className="max-w-4xl mx-auto">
         <div className="relative">
           {/* Timeline line */}
-          <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-primary-200"></div>
+          <div className="absolute left-6 md:left-8 top-0 bottom-0 w-0.5 bg-primary-200 dark:bg-primary-700/50"></div>
 
           {experiences.map((exp, index) => (
             <motion.div
@@ -34,16 +34,16 @@ const Experience = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.2 }}
-              className="relative pl-20 pb-12"
+              className="relative pl-16 md:pl-20 lg:pl-24 pb-10 md:pb-12"
             >
               {/* Timeline dot */}
-              <div className="absolute left-6 top-2 w-4 h-4 bg-primary-600 dark:bg-primary-400 rounded-full border-4 border-white dark:border-slate-800 shadow-lg"></div>
+              <div className="absolute left-4 md:left-6 top-2 w-3.5 h-3.5 md:w-4 md:h-4 bg-primary-600 dark:bg-primary-400 rounded-full border-4 border-white dark:border-slate-800 shadow-lg"></div>
 
               <div className="card">
                 <div className="flex items-start gap-4 mb-4">
                   <FaBriefcase className="text-primary-600 text-2xl mt-1" />
                   <div>
-                    <h3 className="text-2xl font-bold text-gray-800">
+                    <h3 className="text-xl md:text-2xl font-bold text-gray-800 dark:text-slate-100">
                       {exp.title}
                     </h3>
                     <p className="text-primary-600 font-semibold text-lg">
@@ -52,7 +52,7 @@ const Experience = () => {
                     <p className="text-gray-500 dark:text-slate-300 text-sm">{exp.period}</p>
                   </div>
                 </div>
-                <ul className="list-disc list-inside space-y-2 text-gray-600 dark:text-slate-200 ml-10">
+                <ul className="list-disc list-inside space-y-2 text-gray-600 dark:text-slate-200 ml-0 md:ml-10 text-sm md:text-base">
                   {exp.description.map((item, itemIndex) => (
                     <li key={itemIndex}>{item}</li>
                   ))}

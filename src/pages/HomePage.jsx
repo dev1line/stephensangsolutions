@@ -2,13 +2,14 @@ import Hero from '../components/Hero'
 import About from '../components/About'
 import Skills from '../components/Skills'
 import Experience from '../components/Experience'
+import Certifications from '../components/Certifications'
 import Projects from '../components/Projects'
 import Contact from '../components/Contact'
 import SEOHead from '../components/molecules/SEOHead'
 
 const HomePage = () => {
   const baseUrl = typeof window !== 'undefined' ? window.location.origin : ''
-  const ogImage = `${baseUrl}/og-image.svg`
+  const ogImage = `${baseUrl}/og-image.png`
 
   return (
     <>
@@ -23,6 +24,7 @@ const HomePage = () => {
       <About />
       <Skills />
       <Experience />
+      <Certifications />
       <Projects />
       <Contact />
     </>

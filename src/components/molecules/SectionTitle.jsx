@@ -11,16 +11,16 @@ const SectionTitle = ({ children, mascotPosition = 'right', variant = 'default',
   return (
     <motion.h2
       {...motionProps}
-      className={`section-title flex items-center justify-center gap-4 ${className}`}
+      className={`section-title flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 ${className}`}
     >
       {isLeft && (
-        <div className="flex-shrink-0 relative">
+        <div className="flex-shrink-0 relative scale-90 sm:scale-95 md:scale-100 origin-center">
           <AnimatedMascotWrapper size={160} variant={variant} />
         </div>
       )}
-      <span>{children}</span>
+      <span className="text-center">{children}</span>
       {isRight && (
-        <div className="flex-shrink-0 relative">
+        <div className="flex-shrink-0 relative scale-90 sm:scale-95 md:scale-100 origin-center">
           <AnimatedMascotWrapper size={160} variant={variant} />
         </div>
       )}

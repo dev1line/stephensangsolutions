@@ -44,13 +44,13 @@ const About = () => {
         {t.about.title}
       </SectionTitle>
 
-      <div className="grid md:grid-cols-2 gap-12 items-center">
+      <div className="grid md:grid-cols-2 gap-8 md:gap-10 lg:gap-12 items-center">
         <motion.div
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}>
-          <h3 className="text-3xl font-bold text-gray-800 mb-6">
+          <h3 className="text-2xl md:text-3xl font-bold text-gray-800 dark:text-slate-100 mb-4 md:mb-6">
             {t.about.heading}
           </h3>
           <p className="text-gray-600 dark:text-slate-200 mb-4 leading-relaxed">
@@ -67,7 +67,7 @@ const About = () => {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.4 }}
-          className="grid grid-cols-2 gap-6">
+          className="grid grid-cols-2 gap-4 md:gap-6">
           {highlights.map((item, index) => (
             <motion.div
               key={index}

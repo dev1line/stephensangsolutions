@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="400" viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="docker-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2496ed"/>
+      <stop offset="100%" style="stop-color:#0db7ed"/>
+    </linearGradient>
+    <linearGradient id="docker-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2395ec"/>
+      <stop offset="100%" style="stop-color:#006bb5"/>
+    </linearGradient>
+    <filter id="blur-docker">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="8"/>
+    </filter>
+  </defs>
+  <rect width="800" height="400" fill="url(#docker-bg)"/>
+  <circle cx="220" cy="200" r="140" fill="white" fill-opacity="0.3" filter="url(#blur-docker)"/>
+  <g transform="translate(100, 60)">
+    <rect x="0" y="0" width="180" height="220" rx="8" fill="white" fill-opacity="0.95"/>
+    <rect x="16" y="20" width="80" height="10" rx="2" fill="url(#docker-grad)" opacity="0.9"/>
+    <rect x="16" y="44" width="140" height="6" rx="2" fill="#E5E7EB"/>
+    <rect x="16" y="58" width="120" height="6" rx="2" fill="#E5E7EB"/>
+    <rect x="16" y="72" width="100" height="6" rx="2" fill="#E5E7EB"/>
+    <rect x="16" y="96" width="60" height="10" rx="2" fill="url(#docker-grad)" opacity="0.7"/>
+    <rect x="16" y="120" width="148" height="6" rx="2" fill="#E5E7EB"/>
+    <rect x="16" y="134" width="130" height="6" rx="2" fill="#E5E7EB"/>
+    <rect x="16" y="158" width="70" height="10" rx="2" fill="url(#docker-grad)" opacity="0.6"/>
+    <rect x="16" y="182" width="140" height="6" rx="2" fill="#E5E7EB"/>
+    <rect x="16" y="196" width="110" height="6" rx="2" fill="#E5E7EB"/>
+  </g>
+  <!-- Docker logo: whale + stacked containers -->
+  <g transform="translate(248, 75) scale(2.0)">
+    <path d="M 10 55 C 10 75 30 85 50 85 C 70 85 90 75 95 60 C 95 55 90 50 80 50 L 35 50 L 35 45 L 15 45 C 10 45 10 50 10 55 Z" fill="#2496ED"/>
+    <circle cx="20" cy="65" r="2" fill="white"/>
+    <rect x="35" y="35" width="12" height="12" rx="1" fill="#2496ED"/>
+    <rect x="50" y="35" width="12" height="12" rx="1" fill="#2496ED"/>
+    <rect x="65" y="35" width="12" height="12" rx="1" fill="#2496ED"/>
+    <rect x="50" y="20" width="12" height="12" rx="1" fill="#2496ED"/>
+    <rect x="65" y="20" width="12" height="12" rx="1" fill="#2496ED"/>
+    <rect x="50" y="5" width="12" height="12" rx="1" fill="#2496ED"/>
+  </g>
+  <text x="400" y="175" font-family="system-ui,Arial,sans-serif" font-size="38" font-weight="bold" fill="white" text-anchor="start">Docker</text>
+  <text x="400" y="220" font-family="system-ui,Arial,sans-serif" font-size="22" fill="rgba(255,255,255,0.95)" text-anchor="start">Cheatsheet</text>
+  <text x="400" y="260" font-family="system-ui,Arial,sans-serif" font-size="15" fill="rgba(255,255,255,0.85)" text-anchor="start">Image | Container | Compose | Dockerfile</text>
+</svg>

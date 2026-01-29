@@ -5,6 +5,7 @@ export const en = {
     about: 'About',
     skills: 'Skills',
     experience: 'Experience',
+    certifications: 'Certifications',
     projects: 'Projects',
     blog: 'Blog',
     contact: 'Contact',
@@ -102,6 +103,17 @@ export const en = {
       },
     ],
   },
+
+  // Certifications Section
+  certifications: {
+    title: 'Certifications',
+    solutionsArchitectAssociate: 'AWS Certified Solutions Architect',
+    securitySpecialty: 'AWS Certified Security',
+    issuer: 'Amazon Web Services (AWS)',
+    validityLabel: 'Valid',
+    validity: '2026 – 2029',
+    viewOnCredly: 'View on Credly',
+  },
   
   // Projects Section
   projects: {
@@ -142,6 +154,10 @@ export const en = {
     title: 'Blog',
     subtitle: 'Explore articles about DevOps, Cloud, and the latest technologies',
     searchPlaceholder: 'Search by title, excerpt...',
+    filterByType: 'Type',
+    allTypes: 'All',
+    cheatsheet: 'Cheatsheet',
+    project: 'Project',
     filterByTool: 'Filter by tool',
     filterBySkill: 'Filter by skill',
     allTools: 'All tools',
@@ -154,6 +170,7 @@ export const en = {
     noResultsHint: 'Try changing the search or clearing filters.',
     readMore: 'Read More',
     backToBlog: 'Back to Blog',
+    relatedPosts: 'Related posts',
     readOriginal: 'Read Original Post',
     minutes: 'min',
     minutesRead: 'min read',
@@ -162,6 +179,9 @@ export const en = {
     tableOfContents: 'Table of Contents',
     copy: 'Copy',
     copied: 'Copied!',
+    prevPage: 'Previous',
+    nextPage: 'Next',
+    pageOf: 'Page',
   },
   
   // Contact Section
