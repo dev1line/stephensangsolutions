@@ -109,7 +109,7 @@ const BlogPage = () => {
 
   const baseUrl = typeof window !== 'undefined' ? window.location.origin : ''
   const blogUrl = `${baseUrl}/blog`
-  const ogImage = `${baseUrl}/og-image.png`
+  const ogImage = `${baseUrl}/og-image.png?v=2`
 
   return (
     <section className="section-container min-h-screen">

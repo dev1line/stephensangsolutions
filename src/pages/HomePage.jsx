@@ -9,7 +9,7 @@ import SEOHead from '../components/molecules/SEOHead'
 
 const HomePage = () => {
   const baseUrl = typeof window !== 'undefined' ? window.location.origin : ''
-  const ogImage = `${baseUrl}/og-image.png`
+  const ogImage = `${baseUrl}/og-image.png?v=2`
 
   return (
     <>

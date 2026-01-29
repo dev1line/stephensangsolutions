@@ -204,7 +204,7 @@ const BlogDetailPage = () => {
 
   const baseUrl = typeof window !== "undefined" ? window.location.origin : "";
   const blogUrl = `${baseUrl}/blog-detail/${id}`;
-  const ogImage = normalizeUrl(post.image || `${baseUrl}/og-image.png`);
+  const ogImage = normalizeUrl(post.image || `${baseUrl}/og-image.png?v=2`);
 
   return (
     <article className="section-container min-h-screen w-full max-w-full overflow-x-hidden">
