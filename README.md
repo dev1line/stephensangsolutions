@@ -62,13 +62,11 @@ Files sẽ được build vào thư mục `dist/`
 Tạo workflow trong n8n với các nodes:
 
 1. **Webhook Node** (GET)
-
    - Path: `/webhook/portfolio`
    - Method: GET
    - Query Parameters: `action` (với giá trị `getPosts`)
 
 2. **HTTP Request Node** (hoặc Database/API node)
-
    - Lấy danh sách bài viết từ nguồn của bạn (RSS, API, Database, etc.)
 
 3. **Code Node** (Transform data)
@@ -102,23 +100,18 @@ Tạo workflow trong n8n với các nodes:
 Tạo workflow để tự động lấy và upload blog posts:
 
 1. **Schedule Trigger** (hoặc Manual Trigger)
-
    - Chạy định kỳ (ví dụ: mỗi ngày)
 
 2. **HTTP Request Node**
-
    - Lấy bài viết mới từ nguồn (RSS feed, API, etc.)
 
 3. **Filter Node**
-
    - Lọc bài viết mới chưa được upload
 
 4. **Code Node** (Transform)
-
    - Format dữ liệu bài viết
 
 5. **HTTP Request Node** (hoặc Database Node)
-
    - Lưu bài viết vào database/storage
 
 6. **Webhook Node** (POST)
@@ -127,7 +120,6 @@ Tạo workflow để tự động lấy và upload blog posts:
 ### Workflow 3: Xử lý Contact Form
 
 1. **Webhook Node** (POST)
-
    - Path: `/webhook/portfolio`
    - Method: POST
    - Query Parameters: `action` (với giá trị `contact`)
@@ -146,7 +138,6 @@ Tạo workflow để tự động lấy và upload blog posts:
    ```
 
 3. **Email Node** (hoặc Database/CRM Node)
-
    - Gửi email thông báo hoặc lưu vào database
 
 4. **Respond to Webhook Node**
