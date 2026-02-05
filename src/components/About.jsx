@@ -59,7 +59,7 @@ const About = () => {
           <p className="text-gray-600 dark:text-slate-200 mb-4 leading-relaxed">
             {t.about.paragraph2}
           </p>
-          <p className="text-gray-600 leading-relaxed">{t.about.paragraph3}</p>
+          <p className="text-gray-600 dark:text-slate-200 leading-relaxed">{t.about.paragraph3}</p>
         </motion.div>
 
         <motion.div
