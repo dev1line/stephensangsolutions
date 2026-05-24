@@ -7,7 +7,6 @@ import {
   FaAws,
   FaGitAlt,
   FaJenkins,
-  FaPython,
   FaLinux,
   FaShieldAlt,
 } from 'react-icons/fa'
@@ -19,9 +18,10 @@ import {
   SiGo,
   SiNodedotjs,
   SiReact,
-  SiPostgresql,
   SiMongodb,
   SiSolidity,
+  SiTypescript,
+  SiRedux,
 } from 'react-icons/si'
 
 const Skills = () => {
@@ -66,11 +66,12 @@ const Skills = () => {
     {
       title: t.skills.categories.development,
       skills: [
+        { name: 'TypeScript', icon: SiTypescript, level: 90 },
+        { name: 'NestJS / Node.js', icon: SiNodedotjs, level: 90 },
+        { name: 'React / Next.js', icon: SiReact, level: 88 },
+        { name: 'Redux / Zustand', icon: SiRedux, level: 85 },
         { name: 'Golang', icon: SiGo, level: 88 },
-        { name: 'NestJS / Node.js', icon: SiNodedotjs, level: 85 },
-        { name: 'Python', icon: FaPython, level: 88 },
-        { name: 'React / Next.js', icon: SiReact, level: 82 },
-        { name: 'PostgreSQL / MongoDB', icon: SiPostgresql, level: 85 },
+        { name: 'PostgreSQL / MongoDB', icon: SiMongodb, level: 85 },
       ],
     },
     {

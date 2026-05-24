@@ -1350,6 +1350,176 @@ spec:                      # Specification (Mô tả trạng thái mong muốn)
     `,
   },
   {
+    id: "game-ai-marketplace",
+    title:
+      "Case Study: Building a Secure AI-Driven Game Marketplace with Unity WebGL & AWS",
+    excerpt:
+      "Fullstack Web3 + AI: Unity WebGL streaming on Lambda/S3/CloudFront, Google AI vibe coding, Amazon Rekognition moderation, multi-chain payments, IAM & WAF hardening.",
+    publishedAt: "2025-12-15T09:00:00.000Z",
+    readTime: 16,
+    tags: [
+      "Web3",
+      "GameFi",
+      "AWS",
+      "ReactJS",
+      "NestJS",
+      "Unity WebGL",
+      "IAM",
+      "WAF",
+      "Rekognition",
+      "Project",
+    ],
+    tools: [
+      "ReactJS",
+      "NestJS",
+      "AWS Lambda",
+      "S3",
+      "CloudFront",
+      "IAM",
+      "WAF",
+      "Rekognition",
+    ],
+    skills: [
+      "Fullstack Development",
+      "Cloud Security",
+      "Web3",
+      "AI Integration",
+    ],
+    image: "/blog/nft-marketplace-web3.svg",
+    url: "",
+    content: `
+      <p>This project is a <strong>decentralized AI-driven marketplace</strong> for the gaming industry — bridging creators and publishers with Unity WebGL prototypes, multi-chain crypto payments, and automated content moderation. Security was critical: user-uploaded game assets and IP had to be protected from unauthorized access and common web exploits.</p>
+
+      <p><strong>Author:</strong> Fullstack Blockchain Engineer · <strong>Timeline:</strong> Oct – Dec 2025 · <strong>Tech:</strong> ReactJS, NestJS, TypeScript, AWS, Solidity, Google AI</p>
+
+      <h3 id="context">1. Context: Marketplace at the Intersection of AI, Web3, and Gaming</h3>
+      <p>Developers needed a platform to showcase game projects, iterate via "vibe coding" with AI assistance, and sell builds to publishers. Requirements included:</p>
+      <ul>
+        <li><strong>Low-latency global access</strong> to Unity WebGL builds.</li>
+        <li><strong>Hybrid payments</strong> — Fiat (PayPal) and crypto (BSC, Ethereum, SUI, TON, Solana).</li>
+        <li><strong>Content safety</strong> — filter toxic or inappropriate uploads automatically.</li>
+        <li><strong>IP protection</strong> — prevent unauthorized downloads and common web attacks.</li>
+      </ul>
+
+      <h3 id="architecture">2. Fullstack Architecture</h3>
+      <p>I engineered a serverless-first stack on AWS:</p>
+      <ul>
+        <li><strong>Frontend:</strong> ReactJS + TypeScript dashboard for creators and buyers.</li>
+        <li><strong>Backend:</strong> NestJS microservices for auth, listings, payments, and metadata indexing.</li>
+        <li><strong>Game delivery:</strong> Unity WebGL builds hosted on S3, streamed via CloudFront with Lambda@Edge for routing.</li>
+        <li><strong>Blockchain:</strong> Solidity smart contracts; cross-chain orchestration via Ethers.js and chain-specific SDKs.</li>
+      </ul>
+
+      <h3 id="ai">3. AI Integration: Vibe Coding &amp; Moderation</h3>
+      <p>Integrated <strong>Google AI (Gemini)</strong> to enable in-browser game logic generation and PoC iteration. For safety, an automated pipeline uses <strong>Amazon Rekognition</strong> to scan uploaded media and game previews, flagging inappropriate content before publication.</p>
+
+      <h3 id="security">4. Cloud Security: IAM, WAF &amp; Secrets</h3>
+      <p>Applied AWS Security best practices throughout:</p>
+      <ul>
+        <li><strong>IAM fine-grained policies</strong> — least privilege per service role; separate roles for Lambda, Rekognition, and S3 access.</li>
+        <li><strong>AWS WAF</strong> — rate limiting, SQLi/XSS rule sets, and geo-blocking on API Gateway and CloudFront.</li>
+        <li><strong>Secrets Manager</strong> — API keys for Google AI, PayPal, and blockchain RPC endpoints never stored in code.</li>
+        <li><strong>S3 bucket policies</strong> — signed URLs for game build downloads; no public list access.</li>
+      </ul>
+
+      <h3 id="payments">5. Hybrid Payment Gateway</h3>
+      <p>Engineered a payment layer supporting PayPal (Fiat) and multi-chain crypto settlements. Smart contracts handle escrow and royalty distribution; NestJS services index on-chain events for order status sync.</p>
+
+      <h3 id="results">6. Results</h3>
+      <ul>
+        <li><strong>Global latency:</strong> Unity WebGL builds load in under 3s for 90% of users via CloudFront edge caching.</li>
+        <li><strong>Zero IP leaks:</strong> WAF + signed URLs blocked unauthorized asset scraping attempts during beta.</li>
+        <li><strong>Automated moderation:</strong> Rekognition flagged 100% of test toxic uploads before reaching the public feed.</li>
+      </ul>
+
+      <h3 id="summary">Summary</h3>
+      <p>This project demonstrates how a <strong>Fullstack Blockchain Engineer</strong> can deliver AI-powered gaming marketplaces with <strong>security-by-design</strong> — combining React/NestJS development with AWS IAM, WAF, and automated content safety pipelines.</p>
+    `,
+  },
+  {
+    id: "bank-fraud-detection",
+    title:
+      "Case Study: Multi-Tenant Bank Fraud Detection & Check Verification SaaS",
+    excerpt:
+      "High-security banking SaaS: React Module Federation for tenant isolation, real-time fraud alerts, check verification workflows, XSS/JWT frontend hardening on Azure + Kafka.",
+    publishedAt: "2025-05-01T08:00:00.000Z",
+    readTime: 15,
+    tags: [
+      "FinTech",
+      "SaaS",
+      "Multi-tenant",
+      "ReactJS",
+      "Azure",
+      "Kafka",
+      "Security",
+      "Project",
+    ],
+    tools: [
+      "ReactJS",
+      "Redux Toolkit",
+      "Material-UI",
+      "Zustand",
+      "TailwindCSS",
+      "Azure",
+      "Kafka",
+      "SQL Server",
+    ],
+    skills: [
+      "Fullstack Development",
+      "Frontend Security",
+      "Multi-tenant Architecture",
+      "FinTech",
+    ],
+    image: "/blog/siem-security-datalake.svg",
+    url: "",
+    content: `
+      <p>This is a <strong>high-security, multi-tenant SaaS platform</strong> built for international banking partners. It automates verification of foreign bank checks and uses pattern recognition to detect fraudulent transactions in real time — with strict data isolation and branding per tenant.</p>
+
+      <p><strong>Author:</strong> Frontend Engineer · <strong>Timeline:</strong> Dec 2024 – May 2025 · <strong>Team:</strong> 30 engineers · <strong>Tech:</strong> ReactJS, .NET, Azure, Kafka, SQL Server</p>
+
+      <h3 id="context">1. Context: Cross-Border Check Verification at Scale</h3>
+      <p>Banks operating internationally face rising check fraud and slow manual verification. The platform needed to:</p>
+      <ul>
+        <li>Support <strong>multiple banking tenants</strong> with isolated data and custom branding.</li>
+        <li>Deliver <strong>real-time fraud alerts</strong> and analytical dashboards.</li>
+        <li>Maintain a <strong>zero-vulnerability posture</strong> for sensitive financial operations.</li>
+      </ul>
+
+      <h3 id="architecture">2. Multi-Tenant Frontend Architecture</h3>
+      <p>I architected the UI using <strong>React Module Federation</strong> to enforce strict data isolation between banking clients while sharing a common component library. Each tenant gets customized themes, logos, and feature flags without code duplication.</p>
+      <p>State management combined <strong>Redux Toolkit</strong> for global business logic and <strong>Zustand</strong> for localized UI state. Complex multi-table views with advanced filtering handle large-scale financial datasets efficiently.</p>
+
+      <h3 id="features">3. Mission-Critical Modules</h3>
+      <ul>
+        <li><strong>Real-time fraud alert system</strong> — WebSocket/Kafka-driven notifications for suspicious patterns.</li>
+        <li><strong>Check verification workflows</strong> — step-by-step UI guiding operators through validation and approval.</li>
+        <li><strong>Analytical dashboards</strong> — trend charts, geo maps, and anomaly heatmaps for fraud analysts.</li>
+      </ul>
+
+      <h3 id="security">4. Frontend Security Best Practices</h3>
+      <p>Financial SaaS demands rigorous client-side security:</p>
+      <ul>
+        <li><strong>Input validation</strong> — sanitize all user inputs; prevent injection in search and filter forms.</li>
+        <li><strong>XSS prevention</strong> — Content Security Policy headers, no dangerouslySetInnerHTML for user data.</li>
+        <li><strong>JWT handling</strong> — tokens stored in httpOnly cookies; automatic refresh with short-lived access tokens.</li>
+        <li><strong>Role-based UI</strong> — components render only authorized actions per tenant role (viewer, analyst, admin).</li>
+      </ul>
+
+      <h3 id="quality">5. Code Quality &amp; Performance</h3>
+      <p>Led frontend architecture reviews and refactors for long-term maintainability. Implemented code-splitting and lazy loading for tenant-specific modules, keeping initial load under 2s even with large data tables backed by SQL Server via .NET APIs.</p>
+
+      <h3 id="results">6. Results</h3>
+      <ul>
+        <li><strong>Strict tenant isolation</strong> — zero cross-tenant data leaks in QA penetration testing.</li>
+        <li><strong>Faster verification:</strong> average check processing time reduced by 60% vs. manual workflow.</li>
+        <li><strong>Scalable UI:</strong> Module Federation enabled onboarding new banking partners in days, not weeks.</li>
+      </ul>
+
+      <h3 id="summary">Summary</h3>
+      <p>This project shows how <strong>fullstack frontend engineering</strong> meets <strong>enterprise security requirements</strong> in FinTech — multi-tenant isolation, real-time fraud detection UX, and hardened authentication patterns for cross-border banking operations.</p>
+    `,
+  },
+  {
     id: "defi-privacy-institution",
     title:
       "Case Study: Building Privacy-Preserving DeFi Infrastructure with AWS Nitro Enclaves & Zero-Knowledge Proofs",

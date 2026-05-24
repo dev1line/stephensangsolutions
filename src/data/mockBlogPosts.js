@@ -1350,6 +1350,176 @@ spec:                      # Specification (Mô tả trạng thái mong muốn)
       </ol>
     `,
   },
+  {
+    id: "game-ai-marketplace",
+    title:
+      "Case Study: Xây dựng Game Marketplace AI bảo mật với Unity WebGL & AWS",
+    excerpt:
+      "Fullstack Web3 + AI: Unity WebGL streaming trên Lambda/S3/CloudFront, Google AI vibe coding, Amazon Rekognition moderation, thanh toán multi-chain, hardening IAM & WAF.",
+    publishedAt: "2025-12-15T09:00:00.000Z",
+    readTime: 16,
+    tags: [
+      "Web3",
+      "GameFi",
+      "AWS",
+      "ReactJS",
+      "NestJS",
+      "Unity WebGL",
+      "IAM",
+      "WAF",
+      "Rekognition",
+      "Project",
+    ],
+    tools: [
+      "ReactJS",
+      "NestJS",
+      "AWS Lambda",
+      "S3",
+      "CloudFront",
+      "IAM",
+      "WAF",
+      "Rekognition",
+    ],
+    skills: [
+      "Fullstack Development",
+      "Cloud Security",
+      "Web3",
+      "AI Integration",
+    ],
+    image: "/blog/nft-marketplace-web3.svg",
+    url: "",
+    content: `
+      <p>Đây là <strong>marketplace gaming phi tập trung tích hợp AI</strong> — kết nối creator và publisher với prototype Unity WebGL, thanh toán crypto multi-chain và kiểm duyệt nội dung tự động. Bảo mật là ưu tiên: tài sản game và IP người dùng phải được bảo vệ khỏi truy cập trái phép và các web exploit phổ biến.</p>
+
+      <p><strong>Tác giả:</strong> Fullstack Blockchain Engineer · <strong>Thời gian:</strong> Tháng 10 – 12/2025 · <strong>Tech:</strong> ReactJS, NestJS, TypeScript, AWS, Solidity, Google AI</p>
+
+      <h3 id="context">1. Bối cảnh: Marketplace tại giao điểm AI, Web3 và Gaming</h3>
+      <p>Developer cần nền tảng showcase dự án game, iterate qua "vibe coding" với AI và bán build cho publisher. Yêu cầu bao gồm:</p>
+      <ul>
+        <li><strong>Truy cập global latency thấp</strong> cho Unity WebGL builds.</li>
+        <li><strong>Thanh toán hybrid</strong> — Fiat (PayPal) và crypto (BSC, Ethereum, SUI, TON, Solana).</li>
+        <li><strong>An toàn nội dung</strong> — lọc upload toxic hoặc không phù hợp tự động.</li>
+        <li><strong>Bảo vệ IP</strong> — chặn download trái phép và các cuộc tấn công web phổ biến.</li>
+      </ul>
+
+      <h3 id="architecture">2. Kiến trúc Fullstack</h3>
+      <p>Tôi thiết kế stack serverless-first trên AWS:</p>
+      <ul>
+        <li><strong>Frontend:</strong> Dashboard ReactJS + TypeScript cho creator và buyer.</li>
+        <li><strong>Backend:</strong> NestJS microservices cho auth, listing, payment và metadata indexing.</li>
+        <li><strong>Game delivery:</strong> Unity WebGL build trên S3, stream qua CloudFront với Lambda@Edge routing.</li>
+        <li><strong>Blockchain:</strong> Smart contract Solidity; cross-chain qua Ethers.js và SDK từng chain.</li>
+      </ul>
+
+      <h3 id="ai">3. Tích hợp AI: Vibe Coding &amp; Moderation</h3>
+      <p>Tích hợp <strong>Google AI (Gemini)</strong> cho generate game logic và iterate PoC trong browser. Pipeline tự động dùng <strong>Amazon Rekognition</strong> quét media và preview game, flag nội dung không phù hợp trước khi publish.</p>
+
+      <h3 id="security">4. Cloud Security: IAM, WAF &amp; Secrets</h3>
+      <p>Áp dụng AWS Security best practices xuyên suốt:</p>
+      <ul>
+        <li><strong>IAM fine-grained policies</strong> — least privilege mỗi service role; role riêng cho Lambda, Rekognition và S3.</li>
+        <li><strong>AWS WAF</strong> — rate limiting, rule SQLi/XSS và geo-blocking trên API Gateway và CloudFront.</li>
+        <li><strong>Secrets Manager</strong> — API key Google AI, PayPal và blockchain RPC không lưu trong code.</li>
+        <li><strong>S3 bucket policies</strong> — signed URL cho download build; không public list access.</li>
+      </ul>
+
+      <h3 id="payments">5. Hybrid Payment Gateway</h3>
+      <p>Payment layer hỗ trợ PayPal (Fiat) và settlement crypto multi-chain. Smart contract xử lý escrow và royalty; NestJS index on-chain event để sync trạng thái đơn hàng.</p>
+
+      <h3 id="results">6. Kết quả</h3>
+      <ul>
+        <li><strong>Global latency:</strong> Unity WebGL load dưới 3s cho 90% user nhờ CloudFront edge caching.</li>
+        <li><strong>Zero IP leaks:</strong> WAF + signed URL chặn scraping asset trái phép trong beta.</li>
+        <li><strong>Moderation tự động:</strong> Rekognition flag 100% upload toxic test trước khi lên public feed.</li>
+      </ul>
+
+      <h3 id="summary">Tóm tắt</h3>
+      <p>Dự án cho thấy <strong>Fullstack Blockchain Engineer</strong> có thể deliver marketplace gaming AI với <strong>security-by-design</strong> — kết hợp React/NestJS với AWS IAM, WAF và pipeline kiểm duyệt nội dung tự động.</p>
+    `,
+  },
+  {
+    id: "bank-fraud-detection",
+    title:
+      "Case Study: SaaS Phát hiện Gian lận Ngân hàng & Xác minh Séc Multi-Tenant",
+    excerpt:
+      "Banking SaaS bảo mật cao: React Module Federation cô lập tenant, cảnh báo gian lận real-time, quy trình xác minh séc, hardening XSS/JWT trên Azure + Kafka.",
+    publishedAt: "2025-05-01T08:00:00.000Z",
+    readTime: 15,
+    tags: [
+      "FinTech",
+      "SaaS",
+      "Multi-tenant",
+      "ReactJS",
+      "Azure",
+      "Kafka",
+      "Security",
+      "Project",
+    ],
+    tools: [
+      "ReactJS",
+      "Redux Toolkit",
+      "Material-UI",
+      "Zustand",
+      "TailwindCSS",
+      "Azure",
+      "Kafka",
+      "SQL Server",
+    ],
+    skills: [
+      "Fullstack Development",
+      "Frontend Security",
+      "Multi-tenant Architecture",
+      "FinTech",
+    ],
+    image: "/blog/siem-security-datalake.svg",
+    url: "",
+    content: `
+      <p>Đây là <strong>nền tảng SaaS multi-tenant bảo mật cao</strong> cho đối tác ngân hàng quốc tế. Hệ thống tự động xác minh séc ngân hàng nước ngoài và dùng pattern recognition phát hiện giao dịch gian lận real-time — với cô lập dữ liệu và branding riêng mỗi tenant.</p>
+
+      <p><strong>Tác giả:</strong> Frontend Engineer · <strong>Thời gian:</strong> Tháng 12/2024 – 5/2025 · <strong>Team:</strong> 30 engineers · <strong>Tech:</strong> ReactJS, .NET, Azure, Kafka, SQL Server</p>
+
+      <h3 id="context">1. Bối cảnh: Xác minh Séc xuyên biên giới quy mô lớn</h3>
+      <p>Ngân hàng hoạt động quốc tế đối mặt gian lận séc tăng và xác minh thủ công chậm. Platform cần:</p>
+      <ul>
+        <li>Hỗ trợ <strong>nhiều banking tenant</strong> với dữ liệu cô lập và branding tùy chỉnh.</li>
+        <li>Deliver <strong>cảnh báo gian lận real-time</strong> và dashboard phân tích.</li>
+        <li>Duy trì <strong>zero-vulnerability posture</strong> cho thao tác tài chính nhạy cảm.</li>
+      </ul>
+
+      <h3 id="architecture">2. Kiến trúc Frontend Multi-Tenant</h3>
+      <p>Tôi kiến trúc UI bằng <strong>React Module Federation</strong> để cô lập dữ liệu nghiêm ngặt giữa banking client trong khi chia sẻ component library chung. Mỗi tenant có theme, logo và feature flag riêng không duplicate code.</p>
+      <p>State management kết hợp <strong>Redux Toolkit</strong> cho business logic global và <strong>Zustand</strong> cho UI state local. Multi-table view phức tạp với filter nâng cao xử lý dataset tài chính quy mô lớn.</p>
+
+      <h3 id="features">3. Module Mission-Critical</h3>
+      <ul>
+        <li><strong>Hệ thống cảnh báo gian lận real-time</strong> — notification qua WebSocket/Kafka khi phát hiện pattern bất thường.</li>
+        <li><strong>Quy trình xác minh séc</strong> — UI step-by-step hướng dẫn operator qua validation và approval.</li>
+        <li><strong>Dashboard phân tích</strong> — biểu đồ trend, geo map và heatmap anomaly cho fraud analyst.</li>
+      </ul>
+
+      <h3 id="security">4. Frontend Security Best Practices</h3>
+      <p>Financial SaaS đòi hỏi bảo mật client-side nghiêm ngặt:</p>
+      <ul>
+        <li><strong>Input validation</strong> — sanitize mọi input; chặn injection trong form search và filter.</li>
+        <li><strong>XSS prevention</strong> — CSP headers, không dangerouslySetInnerHTML cho user data.</li>
+        <li><strong>JWT handling</strong> — token lưu httpOnly cookie; auto refresh với access token ngắn hạn.</li>
+        <li><strong>Role-based UI</strong> — component chỉ render action được phép theo role tenant (viewer, analyst, admin).</li>
+      </ul>
+
+      <h3 id="quality">5. Code Quality &amp; Performance</h3>
+      <p>Lead review và refactor kiến trúc frontend cho maintainability dài hạn. Code-splitting và lazy loading cho module tenant-specific, giữ initial load dưới 2s dù data table lớn backed bởi SQL Server qua .NET API.</p>
+
+      <h3 id="results">6. Kết quả</h3>
+      <ul>
+        <li><strong>Cô lập tenant nghiêm ngặt</strong> — zero cross-tenant data leak trong QA penetration test.</li>
+        <li><strong>Xác minh nhanh hơn:</strong> thời gian xử lý séc trung bình giảm 60% so với workflow thủ công.</li>
+        <li><strong>UI scalable:</strong> Module Federation onboard banking partner mới trong vài ngày thay vì vài tuần.</li>
+      </ul>
+
+      <h3 id="summary">Tóm tắt</h3>
+      <p>Dự án cho thấy <strong>fullstack frontend engineering</strong> đáp ứng <strong>yêu cầu bảo mật enterprise</strong> trong FinTech — cô lập multi-tenant, UX phát hiện gian lận real-time và pattern authentication hardened cho banking xuyên biên giới.</p>
+    `,
+  },
   // --- 5 bài blog theo 5 dự án ---
   {
     id: "defi-privacy-institution",
